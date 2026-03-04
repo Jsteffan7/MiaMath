@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" width="200" height="260">
+  <defs>
+    <linearGradient id="geoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6600"/>
+      <stop offset="100%" stop-color="#CC0000"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Geometric wings/shield structures -->
+  <!-- Left geometric wing -->
+  <polygon points="12,110 42,85 42,165 12,165" fill="#FF6600" opacity="0.8"/>
+  <polygon points="12,110 42,85 27,110" fill="#FFD700" opacity="0.6"/>
+  <line x1="12" y1="110" x2="42" y2="125" stroke="#FFD700" stroke-width="1.5"/>
+
+  <!-- Right geometric wing -->
+  <polygon points="188,110 158,85 158,165 188,165" fill="#FF6600" opacity="0.8"/>
+  <polygon points="188,110 158,85 173,110" fill="#FFD700" opacity="0.6"/>
+  <line x1="188" y1="110" x2="158" y2="125" stroke="#FFD700" stroke-width="1.5"/>
+
+  <!-- Angular body -->
+  <polygon points="100,130 165,155 155,220 45,220 35,155" fill="url(#geoGrad)"/>
+  <polygon points="100,130 165,155 100,145 35,155" fill="#FF8800" opacity="0.5"/>
+
+  <!-- Ruler belt -->
+  <rect x="42" y="185" width="116" height="18" rx="3" fill="#FFD700"/>
+  <line x1="60" y1="185" x2="60" y2="203" stroke="#CC5500" stroke-width="1"/>
+  <line x1="75" y1="185" x2="75" y2="203" stroke="#CC5500" stroke-width="1"/>
+  <line x1="90" y1="185" x2="90" y2="203" stroke="#CC5500" stroke-width="1"/>
+  <line x1="105" y1="185" x2="105" y2="203" stroke="#CC5500" stroke-width="1"/>
+  <line x1="120" y1="185" x2="120" y2="203" stroke="#CC5500" stroke-width="1"/>
+  <line x1="135" y1="185" x2="135" y2="203" stroke="#CC5500" stroke-width="1"/>
+  <text x="60" y="198" font-size="7" fill="#CC5500">1</text>
+  <text x="75" y="198" font-size="7" fill="#CC5500">2</text>
+  <text x="90" y="198" font-size="7" fill="#CC5500">3</text>
+  <text x="105" y="198" font-size="7" fill="#CC5500">4</text>
+  <text x="120" y="198" font-size="7" fill="#CC5500">5</text>
+
+  <!-- Head - angular/diamond shape -->
+  <polygon points="100,60 150,90 140,140 60,140 50,90" fill="url(#geoGrad)"/>
+  <polygon points="100,60 150,90 100,75 50,90" fill="#FF8800" opacity="0.4"/>
+
+  <!-- Eyes - triangular -->
+  <polygon points="78,95 92,82 92,108" fill="#1A0033"/>
+  <polygon points="80,95 90,85 90,105" fill="#FFD700"/>
+  <circle cx="86" cy="95" r="4" fill="#1A0033"/>
+  <circle cx="88" cy="91" r="2" fill="white"/>
+
+  <polygon points="122,95 108,82 108,108" fill="#1A0033"/>
+  <polygon points="120,95 110,85 110,105" fill="#FFD700"/>
+  <circle cx="114" cy="95" r="4" fill="#1A0033"/>
+  <circle cx="116" cy="91" r="2" fill="white"/>
+
+  <!-- Angular mouth -->
+  <polygon points="82,122 100,132 118,122 110,115 90,115" fill="#1A0033"/>
+  <polygon points="84,122 100,128 116,122 108,117 92,117" fill="#FF6600"/>
+  <rect x="89" y="115" width="22" height="7" fill="white" opacity="0.9"/>
+  <text x="90" y="121" font-size="6" fill="#FF6600" font-weight="bold">A=L×W</text>
+
+  <!-- Geometric symbols on body -->
+  <polygon points="100,145 112,160 88,160" fill="#FFD700" opacity="0.7"/>
+  <rect x="86" y="162" width="28" height="18" fill="#FFD700" opacity="0.5"/>
+
+  <!-- Angular arms -->
+  <polygon points="35,155 58,138 50,205 28,210" fill="#CC3300"/>
+  <polygon points="165,155 142,138 150,205 172,210" fill="#CC3300"/>
+
+  <!-- Floating geometric shapes -->
+  <polygon points="15,85 28,70 41,85 35,100 21,100" fill="#FFD700" opacity="0.7"/>
+  <rect x="158" y="72" width="25" height="25" fill="#FF6600" opacity="0.6" transform="rotate(20,170,85)"/>
+
+  <!-- Name -->
+  <rect x="28" y="236" width="144" height="20" rx="10" fill="#880000" opacity="0.8"/>
+  <text x="100" y="250" font-family="Arial" font-size="11" fill="#FFD700" text-anchor="middle" font-weight="bold">GEO GUARDIAN</text>
+</svg>

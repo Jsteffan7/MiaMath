@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – MiaMath</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="dashboard-page">
+
+  <div class="stars-bg" id="starsContainer"></div>
+
+  <!-- ══ HEADER ══ -->
+  <header class="dashboard-header">
+    <a href="index.html" class="back-btn">← Home</a>
+    <h1 class="dashboard-title">📊 Mia's Progress Dashboard</h1>
+  </header>
+
+  <div class="dashboard-container">
+
+    <!-- ══ HERO CARD ══ -->
+    <div class="hero-card">
+      <div class="hero-avatar-wrap">
+        <div class="hero-avatar">🎤</div>
+        <div class="hero-level-ring" id="heroLevelRing">1</div>
+      </div>
+      <div class="hero-info">
+        <div class="hero-player-name" id="heroName">Mia</div>
+        <div class="hero-title" id="heroTitle">Trainee</div>
+        <div class="hero-xp-bar-container">
+          <div class="hero-xp-label">
+            <span>XP Progress</span>
+            <span><span id="heroXpCurrent">0</span> / <span id="heroXpNext">100</span></span>
+          </div>
+          <div class="hero-xp-track">
+            <div class="hero-xp-fill" id="heroXpFill" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;padding:8px 0;">
+        <a href="game.html?mode=adventure" style="display:inline-block;background:linear-gradient(135deg,var(--pink),var(--purple));color:white;border-radius:var(--radius);padding:10px 22px;font-weight:800;font-size:15px;">⚔️ Play Now!</a>
+      </div>
+    </div>
+
+    <!-- ══ STATS GRID ══ -->
+    <section>
+      <h2 class="section-title">📈 Battle Stats</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-icon">⭐</div>
+          <div class="stat-card-value" id="statLevel">1</div>
+          <div class="stat-card-label">Current Level</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">💎</div>
+          <div class="stat-card-value" id="statXP">0</div>
+          <div class="stat-card-label">Total XP</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">🎯</div>
+          <div class="stat-card-value" id="statAccuracy">--</div>
+          <div class="stat-card-label">Accuracy</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">🔥</div>
+          <div class="stat-card-value" id="statStreak">0</div>
+          <div class="stat-card-label">Best Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">📝</div>
+          <div class="stat-card-value" id="statTotalQ">0</div>
+          <div class="stat-card-label">Questions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">👹</div>
+          <div class="stat-card-value" id="statDemons">0</div>
+          <div class="stat-card-label">Demons Defeated</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SKILL BARS ══ -->
+    <section class="skills-section">
+      <h2 class="section-title">🧠 Math Skills Mastery</h2>
+      <div id="skillBars">
+        <!-- Populated by JS -->
+        <div style="color:var(--text-muted);font-size:14px">Loading skills...</div>
+      </div>
+    </section>
+
+    <!-- ══ ADVENTURE PROGRESS ══ -->
+    <section>
+      <h2 class="section-title">🗺️ Adventure Progress</h2>
+      <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:14px" id="demonProgressGrid">
+          <!-- Populated by JS -->
+        </div>
+        <div class="adventure-progress-bar">
+          <div class="adventure-progress-fill" id="advProgressFill" style="width:0%"></div>
+        </div>
+        <div style="text-align:center;font-size:13px;color:var(--text-muted);margin-top:8px" id="advProgressText">
+          0 / 8 demons defeated
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BADGES ══ -->
+    <section>
+      <h2 class="section-title">🏅 Badges & Achievements</h2>
+      <div class="badges-grid" id="badgesGrid">
+        <div style="color:var(--text-muted);font-size:14px">Loading badges...</div>
+      </div>
+    </section>
+
+    <!-- ══ RECOMMENDATIONS ══ -->
+    <section>
+      <h2 class="section-title">💡 Recommended Practice</h2>
+      <div class="recommend-grid" id="recommendGrid">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- ══ RESET ══ -->
+    <section style="text-align:center;padding:10px 0 20px;">
+      <button id="resetBtn" style="
+        background:rgba(255,51,51,0.12);
+        border:1px solid rgba(255,51,51,0.3);
+        border-radius:var(--radius-sm);
+        color:rgba(255,51,51,0.7);
+        padding:10px 20px;
+        font-size:13px;
+        cursor:pointer;
+        font-family:var(--font-main);
+        transition:all 0.2s;
+      " onmouseover="this.style.background='rgba(255,51,51,0.2)'"
+         onmouseout="this.style.background='rgba(255,51,51,0.12)'">
+        ⚠️ Reset All Progress
+      </button>
+    </section>
+
+  </div>
+
+  <script src="js/progressSystem.js"></script>
+  <script src="js/audioManager.js"></script>
+  <script src="js/mathEngine.js"></script>
+  <script src="js/uiEngine.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ps = ProgressSystem.getState();
+
+      // Adventure demon grid
+      const grid = document.getElementById('demonProgressGrid');
+      const fill = document.getElementById('advProgressFill');
+      const text = document.getElementById('advProgressText');
+      const demonData = [
+        { name: 'Multipli Fiend', emoji: '🟣' },
+        { name: 'Division Goblin', emoji: '🟢' },
+        { name: 'Place Pirate', emoji: '🟠' },
+        { name: 'Fraction Phantom', emoji: '👻' },
+        { name: 'Time Trickster', emoji: '🕐' },
+        { name: 'Pattern Sprite', emoji: '🎨' },
+        { name: 'Geo Guardian', emoji: '🔺' },
+        { name: 'BOSS: Kali-Math-ulator', emoji: '💀' }
+      ];
+
+      const defeated = ps.adventureProgress?.defeatedDemons || [];
+      demonData.forEach((d, i) => {
+        const item = document.createElement('div');
+        const done = defeated.includes(i);
+        item.style.cssText = 'text-align:center;padding:8px 10px;';
+        item.innerHTML = `
+          <div style="font-size:28px">${done ? '✅' : d.emoji}</div>
+          <div style="font-size:10px;color:${done ? 'var(--green)' : 'var(--text-muted)'};margin-top:4px;max-width:70px;line-height:1.2">${d.name}</div>
+        `;
+        item.title = done ? `${d.name} - DEFEATED!` : `${d.name} - Not yet defeated`;
+        grid.appendChild(item);
+      });
+      const defCount = defeated.length;
+      setTimeout(() => { fill.style.width = (defCount / 8 * 100) + '%'; }, 400);
+      text.textContent = `${defCount} / 8 demons defeated`;
+
+      // Reset button
+      document.getElementById('resetBtn')?.addEventListener('click', () => {
+        if (confirm('⚠️ Are you sure you want to reset ALL of Mia\'s progress? This cannot be undone!')) {
+          if (confirm('🚨 Last chance! Reset everything?')) {
+            ProgressSystem.reset();
+            window.location.reload();
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

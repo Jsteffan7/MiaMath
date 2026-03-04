@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>MiaMath – K-Pop Demon Hunter Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .hero-pic-wrap { position: relative; display: inline-block; }
+    .hero-pic-wrap img { width: 170px; filter: drop-shadow(0 0 24px rgba(255,105,180,0.8)); animation: heroFloat 3s ease-in-out infinite; }
+    .sparkle-ring {
+      position: absolute; inset: -15px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--pink), var(--purple), var(--blue), var(--gold), var(--pink));
+      mask: radial-gradient(circle, transparent 65%, white 67%);
+      -webkit-mask: radial-gradient(circle, transparent 65%, white 67%);
+      animation: rainbow 4s linear infinite;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body class="landing-page">
+
+  <!-- Stars -->
+  <div class="stars-bg" id="starsContainer"></div>
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="landing-container">
+
+    <!-- ── Title ── -->
+    <div class="title-section">
+      <div class="academy-badge">✦ K-Pop Demon Hunter Academy ✦</div>
+      <h1 class="game-title">
+        <span class="title-mia">MIA</span><span class="title-math">MATH</span>
+      </h1>
+      <div class="title-subtitle">Save the Realm · Master 3rd Grade Math</div>
+    </div>
+
+    <!-- ── Hero Display ── -->
+    <div class="hero-display">
+      <div class="hero-character">
+        <div class="hero-pic-wrap">
+          <div class="sparkle-ring"></div>
+          <img id="heroPic" src="assets/characters/mia.svg" alt="Mia the Math Hero" onerror="this.style.fontSize='80px';this.outerHTML='<div style=&quot;font-size:80px;animation:heroFloat 3s ease-in-out infinite&quot;>🎤</div>'">
+        </div>
+        <div class="hero-name-tag">✦ MIA ✦</div>
+      </div>
+
+      <div class="welcome-message">
+        <p class="welcome-line">Welcome back, <span class="name-highlight player-name">Mia</span>! 🌟</p>
+        <p class="welcome-sub">The demon realm trembles at your math skills!</p>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:8px">Choose your mission, Demon Hunter 🗡️</p>
+      </div>
+    </div>
+
+    <!-- ── Mode Cards ── -->
+    <div class="mode-grid">
+      <a href="game.html?mode=adventure" class="mode-card adventure-card" onclick="AudioManager.playClick()">
+        <span class="card-icon">⚔️</span>
+        <div class="card-title">Adventure Mode</div>
+        <div class="card-desc">Fight through 8 demon levels!</div>
+        <div class="card-glow"></div>
+      </a>
+      <a href="game.html?mode=practice" class="mode-card practice-card" onclick="AudioManager.playClick()">
+        <span class="card-icon">📚</span>
+        <div class="card-title">Practice Mode</div>
+        <div class="card-desc">Sharpen all your skills!</div>
+        <div class="card-glow"></div>
+      </a>
+      <a href="game.html?mode=boss" class="mode-card boss-card" onclick="AudioManager.playClick()">
+        <span class="card-icon">👹</span>
+        <div class="card-title">Boss Battle</div>
+        <div class="card-desc">Face Kali-Math-ulator!</div>
+        <div class="card-glow"></div>
+      </a>
+      <a href="game.html?mode=daily" class="mode-card daily-card" onclick="AudioManager.playClick()" id="dailyCard">
+        <span class="card-icon">🌙</span>
+        <div class="card-title">Daily Challenge</div>
+        <div class="card-desc">New demons every day!</div>
+        <div class="card-glow"></div>
+      </a>
+    </div>
+
+    <!-- ── Adventure Progress ── -->
+    <div style="width:100%;max-width:600px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;backdrop-filter:blur(10px);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="font-family:var(--font-title);font-size:16px">⚔️ Adventure Progress</span>
+        <span id="adventureProgressText" style="font-size:13px;color:var(--text-muted)">Level 0/8</span>
+      </div>
+      <div class="adventure-progress-bar">
+        <div class="adventure-progress-fill" id="adventureProgressFill" style="width:0%"></div>
+      </div>
+      <div id="demonIcons" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- ── Dashboard Link ── -->
+    <a href="dashboard.html" class="dashboard-btn" onclick="AudioManager.playClick()">
+      <span>📊</span> View Progress Dashboard
+    </a>
+
+    <!-- ── Quick Stats ── -->
+    <div class="quick-stats">
+      <div class="stat-item">
+        <span class="stat-icon">⭐</span>
+        <span class="stat-label">Level</span>
+        <span class="stat-value" id="statLevel">1</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">💎</span>
+        <span class="stat-label">XP</span>
+        <span class="stat-value" id="statXP">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">🎯</span>
+        <span class="stat-label">Accuracy</span>
+        <span class="stat-value" id="statAccuracy">--</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">🔥</span>
+        <span class="stat-label">Best Streak</span>
+        <span class="stat-value" id="statStreak">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">👹</span>
+        <span class="stat-label">Demons</span>
+        <span class="stat-value" id="statDemons">0</span>
+      </div>
+    </div>
+
+    <p style="font-size:12px;color:rgba(255,255,255,0.3);text-align:center">
+      MiaMath · Built for Mia · Pennsylvania 3rd Grade Math Standards
+    </p>
+  </div>
+
+  <script src="js/progressSystem.js"></script>
+  <script src="js/audioManager.js"></script>
+  <script src="js/mathEngine.js"></script>
+  <script src="js/uiEngine.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Extra landing page init
+    document.addEventListener('DOMContentLoaded', () => {
+      const ps = ProgressSystem.getState();
+      // Demons defeated
+      const demonEl = document.getElementById('statDemons');
+      if (demonEl) demonEl.textContent = ps.demonsDefeated || 0;
+
+      // Adventure progress bar
+      const adv = ps.adventureProgress;
+      const defeated = adv?.defeatedDemons?.length || 0;
+      const fill = document.getElementById('adventureProgressFill');
+      const text = document.getElementById('adventureProgressText');
+      const icons = document.getElementById('demonIcons');
+      if (fill) setTimeout(() => { fill.style.width = (defeated / 8 * 100) + '%'; }, 400);
+      if (text) text.textContent = `Level ${defeated}/8`;
+
+      // Demon icon row
+      const demonEmoji = ['🟣','🟢','🟠','👻','🕐','🎨','🔺','💀'];
+      const demonNames = ['Multipli Fiend','Division Goblin','Place Pirate','Fraction Phantom','Time Trickster','Pattern Sprite','Geo Guardian','BOSS'];
+      if (icons) {
+        demonEmoji.forEach((em, i) => {
+          const dot = document.createElement('span');
+          const done = adv?.defeatedDemons?.includes(i);
+          dot.title = demonNames[i] + (done ? ' ✓ Defeated!' : ' - Not yet defeated');
+          dot.textContent = done ? '✅' : em;
+          dot.style.cssText = `font-size:20px;opacity:${done ? 1 : 0.4};cursor:default;transition:opacity 0.3s;`;
+          icons.appendChild(dot);
+        });
+      }
+
+      // Daily done notice
+      if (ProgressSystem.isDailyDone()) {
+        const daily = document.getElementById('dailyCard');
+        if (daily) {
+          daily.querySelector('.card-desc').textContent = '✅ Completed! Come back tomorrow!';
+          daily.style.opacity = '0.75';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

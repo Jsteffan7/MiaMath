@@ -1,0 +1,240 @@
+{
+  "badges": [
+    {
+      "id": "first_battle",
+      "name": "First Strike",
+      "icon": "⚔️",
+      "emoji": "⚔️",
+      "description": "Win your very first battle!",
+      "requirement": { "type": "battles_won", "value": 1 },
+      "rarity": "bronze",
+      "xpBonus": 25,
+      "unlockMessage": "You won your first battle, Mia! The Demon Hunter Academy is proud!"
+    },
+    {
+      "id": "multiplication_novice",
+      "name": "Times Table Trainee",
+      "icon": "✖️",
+      "emoji": "✖️",
+      "description": "Answer 10 multiplication questions correctly",
+      "requirement": { "type": "category_correct", "category": "multiplication", "value": 10 },
+      "rarity": "bronze",
+      "xpBonus": 50,
+      "unlockMessage": "Your multiplication powers are growing, Mia!"
+    },
+    {
+      "id": "multiplication_master",
+      "name": "Multiplication Master",
+      "icon": "⭐",
+      "emoji": "⭐",
+      "description": "Answer 50 multiplication questions correctly",
+      "requirement": { "type": "category_correct", "category": "multiplication", "value": 50 },
+      "rarity": "gold",
+      "xpBonus": 200,
+      "unlockMessage": "WOW, Mia! You've mastered multiplication! The demons are shaking!"
+    },
+    {
+      "id": "division_defender",
+      "name": "Division Defender",
+      "icon": "🛡️",
+      "emoji": "🛡️",
+      "description": "Answer 25 division questions correctly",
+      "requirement": { "type": "category_correct", "category": "division", "value": 25 },
+      "rarity": "silver",
+      "xpBonus": 100,
+      "unlockMessage": "Amazing, Mia! Division holds no secrets from you!"
+    },
+    {
+      "id": "fraction_fighter",
+      "name": "Fraction Fighter",
+      "icon": "💎",
+      "emoji": "💎",
+      "description": "Answer 25 fraction questions correctly",
+      "requirement": { "type": "category_correct", "category": "fractions", "value": 25 },
+      "rarity": "silver",
+      "xpBonus": 100,
+      "unlockMessage": "Fractions are your superpower now, Mia!"
+    },
+    {
+      "id": "geometry_guardian",
+      "name": "Geometry Guardian",
+      "icon": "📐",
+      "emoji": "📐",
+      "description": "Answer 20 geometry questions correctly",
+      "requirement": { "type": "category_correct", "category": "geometry", "value": 20 },
+      "rarity": "silver",
+      "xpBonus": 100,
+      "unlockMessage": "Shapes and spaces are your domain, Mia!"
+    },
+    {
+      "id": "streak_5",
+      "name": "Hot Streak!",
+      "icon": "🔥",
+      "emoji": "🔥",
+      "description": "Get 5 correct answers in a row",
+      "requirement": { "type": "streak", "value": 5 },
+      "rarity": "bronze",
+      "xpBonus": 50,
+      "unlockMessage": "5 in a row, Mia! You're on FIRE! 🔥"
+    },
+    {
+      "id": "streak_10",
+      "name": "Unstoppable!",
+      "icon": "⚡",
+      "emoji": "⚡",
+      "description": "Get 10 correct answers in a row",
+      "requirement": { "type": "streak", "value": 10 },
+      "rarity": "gold",
+      "xpBonus": 150,
+      "unlockMessage": "10 in a row! Mia, you are UNSTOPPABLE! ⚡"
+    },
+    {
+      "id": "perfect_daily",
+      "name": "Daily Champion",
+      "icon": "🏆",
+      "emoji": "🏆",
+      "description": "Complete a Daily Challenge with a perfect score",
+      "requirement": { "type": "daily_perfect", "value": 1 },
+      "rarity": "gold",
+      "xpBonus": 200,
+      "unlockMessage": "PERFECT! Mia, you are today's Daily Champion! 🏆"
+    },
+    {
+      "id": "boss_slayer",
+      "name": "Boss Slayer",
+      "icon": "👹",
+      "emoji": "👹",
+      "description": "Defeat the Boss Demon",
+      "requirement": { "type": "boss_defeated", "value": 1 },
+      "rarity": "legendary",
+      "xpBonus": 500,
+      "unlockMessage": "LEGENDARY! You defeated the Boss, Mia! You are the ultimate Demon Hunter!"
+    },
+    {
+      "id": "level_5",
+      "name": "Rising Star",
+      "icon": "🌟",
+      "emoji": "🌟",
+      "description": "Reach Level 5",
+      "requirement": { "type": "level", "value": 5 },
+      "rarity": "silver",
+      "xpBonus": 150,
+      "unlockMessage": "Level 5! The Demon Hunter Academy has a rising star named Mia!"
+    },
+    {
+      "id": "level_10",
+      "name": "Academy Elite",
+      "icon": "👑",
+      "emoji": "👑",
+      "description": "Reach Level 10",
+      "requirement": { "type": "level", "value": 10 },
+      "rarity": "legendary",
+      "xpBonus": 500,
+      "unlockMessage": "Level 10! Mia has become an Elite Demon Hunter! All demons fear her name!"
+    },
+    {
+      "id": "time_master",
+      "name": "Time Master",
+      "icon": "⏰",
+      "emoji": "⏰",
+      "description": "Answer 20 time & measurement questions correctly",
+      "requirement": { "type": "category_correct", "category": "time", "value": 20 },
+      "rarity": "silver",
+      "xpBonus": 100,
+      "unlockMessage": "Time flies when you're winning, Mia!"
+    },
+    {
+      "id": "pattern_pro",
+      "name": "Pattern Pro",
+      "icon": "🎵",
+      "emoji": "🎵",
+      "description": "Answer 20 pattern questions correctly",
+      "requirement": { "type": "category_correct", "category": "patterns", "value": 20 },
+      "rarity": "silver",
+      "xpBonus": 100,
+      "unlockMessage": "You see patterns everywhere, Mia! The Pattern Sprite never stood a chance!"
+    },
+    {
+      "id": "place_value_pro",
+      "name": "Place Value Pro",
+      "icon": "🔢",
+      "emoji": "🔢",
+      "description": "Answer 20 place value questions correctly",
+      "requirement": { "type": "category_correct", "category": "placeValue", "value": 20 },
+      "rarity": "silver",
+      "xpBonus": 100,
+      "unlockMessage": "Thousands, hundreds, tens, ones - Mia knows them all!"
+    },
+    {
+      "id": "adventurer",
+      "name": "Adventure Begins",
+      "icon": "🗺️",
+      "emoji": "🗺️",
+      "description": "Complete Adventure Mode Level 1",
+      "requirement": { "type": "adventure_level", "value": 1 },
+      "rarity": "bronze",
+      "xpBonus": 75,
+      "unlockMessage": "Your adventure has begun, Mia! The demon realm will never be the same!"
+    },
+    {
+      "id": "demon_hunter",
+      "name": "Demon Hunter",
+      "icon": "🎯",
+      "emoji": "🎯",
+      "description": "Defeat 5 demons in Adventure Mode",
+      "requirement": { "type": "demons_defeated", "value": 5 },
+      "rarity": "gold",
+      "xpBonus": 250,
+      "unlockMessage": "5 demons down! Mia is a true Demon Hunter!"
+    },
+    {
+      "id": "accuracy_90",
+      "name": "Sharp Shooter",
+      "icon": "🎯",
+      "emoji": "🎯",
+      "description": "Maintain 90% accuracy over 30+ questions",
+      "requirement": { "type": "accuracy", "value": 90, "minAnswered": 30 },
+      "rarity": "gold",
+      "xpBonus": 200,
+      "unlockMessage": "90% accuracy! Mia's math aim is unmatched!"
+    }
+  ],
+  "levelThresholds": [
+    0, 100, 250, 450, 700, 1000, 1350, 1750, 2200, 2700,
+    3250, 3850, 4500, 5200, 5950, 6750, 7600, 8500, 9450, 10000
+  ],
+  "levelTitles": [
+    "Trainee",
+    "Apprentice",
+    "Math Cadet",
+    "Demon Scout",
+    "Battle Mage",
+    "Math Knight",
+    "Demon Hunter",
+    "Elite Hunter",
+    "Math Champion",
+    "Legendary Hero",
+    "Demon Slayer",
+    "Math Overlord",
+    "Academy Master",
+    "Grand Champion",
+    "Ultimate Hero",
+    "Math Legend",
+    "Phantom Slayer",
+    "Supreme Master",
+    "Celestial Hunter",
+    "Demon Destroyer"
+  ],
+  "xpRewards": {
+    "correct_easy": 10,
+    "correct_medium": 15,
+    "correct_hard": 25,
+    "wrong": 0,
+    "demon_defeated": 75,
+    "boss_defeated": 300,
+    "daily_complete": 100,
+    "daily_perfect": 250,
+    "streak_bonus_5": 20,
+    "streak_bonus_10": 50
+  }
+}

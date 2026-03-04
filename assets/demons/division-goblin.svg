@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250" width="200" height="250">
+  <defs>
+    <radialGradient id="goblinBody" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#44EE88"/>
+      <stop offset="100%" stop-color="#00AA44"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Ears -->
+  <ellipse cx="42" cy="95" rx="18" ry="28" fill="#00AA44" transform="rotate(-20,42,95)"/>
+  <ellipse cx="158" cy="95" rx="18" ry="28" fill="#00AA44" transform="rotate(20,158,95)"/>
+  <ellipse cx="42" cy="95" rx="10" ry="18" fill="#FF6699" transform="rotate(-20,42,95)"/>
+  <ellipse cx="158" cy="95" rx="10" ry="18" fill="#FF6699" transform="rotate(20,158,95)"/>
+
+  <!-- Body -->
+  <ellipse cx="100" cy="175" rx="68" ry="65" fill="url(#goblinBody)"/>
+  <!-- Body highlight -->
+  <ellipse cx="82" cy="152" rx="28" ry="22" fill="#66FF99" opacity="0.3"/>
+
+  <!-- ÷ symbol on belly -->
+  <circle cx="100" cy="158" r="28" fill="#00AA44"/>
+  <circle cx="100" cy="145" r="6" fill="#FFD700"/>
+  <rect x="82" y="155" width="36" height="5" rx="2" fill="#FFD700"/>
+  <circle cx="100" cy="172" r="6" fill="#FFD700"/>
+
+  <!-- Head -->
+  <ellipse cx="100" cy="95" rx="52" ry="48" fill="url(#goblinBody)"/>
+
+  <!-- Eyes with ÷ style (dots above/below) -->
+  <circle cx="82" cy="90" r="16" fill="#1A0033"/>
+  <circle cx="82" cy="90" r="12" fill="#00FF88"/>
+  <circle cx="82" cy="84" r="4" fill="#1A0033"/>
+  <rect x="73" y="87" width="18" height="3" rx="1" fill="#1A0033"/>
+  <circle cx="82" cy="96" r="4" fill="#1A0033"/>
+  <circle cx="86" cy="85" r="3" fill="white"/>
+
+  <circle cx="118" cy="90" r="16" fill="#1A0033"/>
+  <circle cx="118" cy="90" r="12" fill="#00FF88"/>
+  <circle cx="118" cy="84" r="4" fill="#1A0033"/>
+  <rect x="109" y="87" width="18" height="3" rx="1" fill="#1A0033"/>
+  <circle cx="118" cy="96" r="4" fill="#1A0033"/>
+  <circle cx="122" cy="85" r="3" fill="white"/>
+
+  <!-- Mischievous smile -->
+  <path d="M74,112 Q100,128 126,112" fill="#1A0033"/>
+  <path d="M78,112 Q100,124 122,112" fill="#44EE88"/>
+  <polygon points="82,112 86,120 90,112" fill="white"/>
+  <polygon points="95,113 99,122 103,113" fill="white"/>
+  <polygon points="110,112 114,120 118,112" fill="white"/>
+
+  <!-- Nose bump -->
+  <ellipse cx="100" cy="105" rx="8" ry="5" fill="#33CC66"/>
+
+  <!-- Arms -->
+  <path d="M32,155 Q18,185 28,210" stroke="#00AA44" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <path d="M32,155 Q18,185 28,210" stroke="#44EE88" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <circle cx="28" cy="210" r="18" fill="#44EE88"/>
+  <text x="19" y="216" font-size="18" fill="#FFD700" font-weight="bold">÷</text>
+
+  <path d="M168,155 Q182,185 172,210" stroke="#00AA44" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <path d="M168,155 Q182,185 172,210" stroke="#44EE88" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <circle cx="172" cy="210" r="18" fill="#44EE88"/>
+  <text x="163" y="216" font-size="18" fill="#FFD700" font-weight="bold">÷</text>
+
+  <!-- Floating ÷ symbols -->
+  <text x="12" y="70" font-size="16" fill="#FFD700" opacity="0.8">÷</text>
+  <text x="170" y="65" font-size="16" fill="#FFD700" opacity="0.8">÷</text>
+
+  <!-- Name -->
+  <rect x="30" y="228" width="140" height="20" rx="10" fill="#006622" opacity="0.8"/>
+  <text x="100" y="242" font-family="Arial" font-size="11" fill="#FFD700" text-anchor="middle" font-weight="bold">DIVISION GOBLIN</text>
+</svg>

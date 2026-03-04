@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" width="200" height="260">
+  <defs>
+    <radialGradient id="tricksterBody" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#44CCFF"/>
+      <stop offset="100%" stop-color="#0055AA"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Hat (top hat with clock face) -->
+  <rect x="65" y="22" width="70" height="55" rx="5" fill="#003388"/>
+  <rect x="52" y="72" width="96" height="12" rx="3" fill="#003388"/>
+  <!-- Hat band -->
+  <rect x="65" y="57" width="70" height="8" fill="#FFD700"/>
+  <!-- Clock face on hat -->
+  <circle cx="100" cy="45" r="22" fill="#001155"/>
+  <circle cx="100" cy="45" r="20" fill="#EEEEFF"/>
+  <circle cx="100" cy="45" r="18" fill="white"/>
+  <!-- Clock numbers -->
+  <text x="97" y="30" font-size="7" fill="#003388" font-weight="bold">12</text>
+  <text x="116" y="48" font-size="7" fill="#003388" font-weight="bold">3</text>
+  <text x="98" y="65" font-size="7" fill="#003388" font-weight="bold">6</text>
+  <text x="80" y="48" font-size="7" fill="#003388" font-weight="bold">9</text>
+  <!-- Clock hands -->
+  <line x1="100" y1="45" x2="100" y2="30" stroke="#003388" stroke-width="2" stroke-linecap="round"/>
+  <line x1="100" y1="45" x2="112" y2="50" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="100" cy="45" r="2" fill="#003388"/>
+
+  <!-- Body -->
+  <ellipse cx="100" cy="180" rx="65" ry="68" fill="url(#tricksterBody)"/>
+  <ellipse cx="82" cy="158" rx="25" ry="20" fill="#66DDFF" opacity="0.3"/>
+
+  <!-- Pocket watch on body -->
+  <circle cx="100" cy="175" r="25" fill="#001155"/>
+  <circle cx="100" cy="175" r="22" fill="#EEEEFF"/>
+  <circle cx="100" cy="175" r="20" fill="white"/>
+  <circle cx="100" cy="175" r="1.5" fill="#003388"/>
+  <line x1="100" y1="175" x2="100" y2="158" stroke="#003388" stroke-width="1.5"/>
+  <line x1="100" y1="175" x2="114" y2="180" stroke="#FF0000" stroke-width="1"/>
+  <text x="94" y="161" font-size="5" fill="#003388">12</text>
+
+  <!-- Head -->
+  <ellipse cx="100" cy="110" rx="48" ry="46" fill="url(#tricksterBody)"/>
+
+  <!-- Tricky eyes (spirals) -->
+  <circle cx="80" cy="105" r="15" fill="#001155"/>
+  <circle cx="80" cy="105" r="12" fill="#00AAFF"/>
+  <circle cx="80" cy="105" r="7" fill="#001155"/>
+  <circle cx="80" cy="105" r="4" fill="#00FFFF"/>
+  <circle cx="84" cy="100" r="3" fill="white"/>
+
+  <circle cx="120" cy="105" r="15" fill="#001155"/>
+  <circle cx="120" cy="105" r="12" fill="#00AAFF"/>
+  <circle cx="120" cy="105" r="7" fill="#001155"/>
+  <circle cx="120" cy="105" r="4" fill="#00FFFF"/>
+  <circle cx="124" cy="100" r="3" fill="white"/>
+
+  <!-- Smile with clock hands for teeth -->
+  <path d="M78,126 Q100,140 122,126" fill="#001155"/>
+  <path d="M82,126 Q100,135 118,126" fill="#44CCFF"/>
+  <line x1="88" y1="126" x2="86" y2="133" stroke="white" stroke-width="2"/>
+  <line x1="100" y1="127" x2="100" y2="135" stroke="white" stroke-width="2"/>
+  <line x1="112" y1="126" x2="114" y2="133" stroke="white" stroke-width="2"/>
+
+  <!-- Arms -->
+  <path d="M35,165 Q22,192 32,215" stroke="#0055AA" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <path d="M35,165 Q22,192 32,215" stroke="#44CCFF" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <circle cx="32" cy="215" r="18" fill="#44CCFF"/>
+  <!-- Mini clock on left hand -->
+  <circle cx="32" cy="215" r="10" fill="white"/>
+  <line x1="32" y1="215" x2="32" y2="207" stroke="#003388" stroke-width="1.5"/>
+  <line x1="32" y1="215" x2="38" y2="218" stroke="#FF0000" stroke-width="1"/>
+
+  <path d="M165,165 Q178,192 168,215" stroke="#0055AA" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <path d="M165,165 Q178,192 168,215" stroke="#44CCFF" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <circle cx="168" cy="215" r="18" fill="#44CCFF"/>
+  <circle cx="168" cy="215" r="10" fill="white"/>
+  <line x1="168" y1="215" x2="168" y2="207" stroke="#003388" stroke-width="1.5"/>
+  <line x1="168" y1="215" x2="174" y2="218" stroke="#FF0000" stroke-width="1"/>
+
+  <!-- Floating clocks -->
+  <text x="10" y="145" font-size="20" opacity="0.8">⏰</text>
+  <text x="165" y="140" font-size="20" opacity="0.8">⌚</text>
+
+  <!-- Name -->
+  <rect x="28" y="238" width="144" height="20" rx="10" fill="#003388" opacity="0.8"/>
+  <text x="100" y="252" font-family="Arial" font-size="11" fill="#FFD700" text-anchor="middle" font-weight="bold">TIME TRICKSTER</text>
+</svg>

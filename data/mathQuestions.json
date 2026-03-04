@@ -1,0 +1,374 @@
+{
+  "categories": {
+    "multiplication": {
+      "name": "Multiplication",
+      "icon": "✖️",
+      "demon": "Multipli Fiend",
+      "color": "#9D00FF",
+      "descriptions": ["Times table challenge!", "Multiply your power!", "How many groups?"]
+    },
+    "division": {
+      "name": "Division",
+      "icon": "➗",
+      "demon": "Division Goblin",
+      "color": "#00CC66",
+      "descriptions": ["Split it up!", "Share equally!", "How many in each group?"]
+    },
+    "fractions": {
+      "name": "Fractions",
+      "icon": "½",
+      "demon": "Fraction Phantom",
+      "color": "#FF6EC7",
+      "descriptions": ["Parts of a whole!", "Equal shares!", "Numerator vs Denominator!"]
+    },
+    "placeValue": {
+      "name": "Place Value",
+      "icon": "🔢",
+      "demon": "Place Value Pirate",
+      "color": "#FF8C00",
+      "descriptions": ["Ones, tens, hundreds!", "How many thousands?", "Expanded form!"]
+    },
+    "time": {
+      "name": "Time & Measurement",
+      "icon": "⏰",
+      "demon": "Time Trickster",
+      "color": "#00BFFF",
+      "descriptions": ["What time is it?", "How many minutes?", "Measure it!"]
+    },
+    "geometry": {
+      "name": "Area & Perimeter",
+      "icon": "📐",
+      "demon": "Geo Guardian",
+      "color": "#FF4500",
+      "descriptions": ["Calculate the area!", "Find the perimeter!", "Shape powers!"]
+    },
+    "patterns": {
+      "name": "Patterns",
+      "icon": "🎵",
+      "demon": "Pattern Sprite",
+      "color": "#FFD700",
+      "descriptions": ["What comes next?", "Follow the pattern!", "Complete the sequence!"]
+    },
+    "addition": {
+      "name": "Addition",
+      "icon": "➕",
+      "demon": "Sum Specter",
+      "color": "#FF69B4",
+      "descriptions": ["Add them up!", "Total power!", "Combine your numbers!"]
+    },
+    "subtraction": {
+      "name": "Subtraction",
+      "icon": "➖",
+      "demon": "Minus Menace",
+      "color": "#6A5ACD",
+      "descriptions": ["Take it away!", "Find the difference!", "How many left?"]
+    }
+  },
+  "staticQuestions": {
+    "multiplication": [
+      {
+        "text": "What is 6 × 7?",
+        "answer": 42,
+        "difficulty": 2,
+        "hint": "Try skip counting by 6: 6, 12, 18, 24, 30, 36, 42! Or think: 6×7 = 6×6 + 6 = 36 + 6 = 42 🌟",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "Mia has 8 bags with 9 crystals in each. How many crystals total?",
+        "answer": 72,
+        "difficulty": 3,
+        "hint": "This is 8 × 9. Remember: 8 × 9 = 72. Try counting by 9s: 9, 18, 27, 36, 45, 54, 63, 72! ✨",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      },
+      {
+        "text": "What is 4 × 12?",
+        "answer": 48,
+        "difficulty": 2,
+        "hint": "4 × 12 = 4 × 10 + 4 × 2 = 40 + 8 = 48! Break it apart! 💪",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "There are 7 demon armies with 8 soldiers each. How many soldiers?",
+        "answer": 56,
+        "difficulty": 2,
+        "hint": "7 × 8 = 56. You can think: 7 × 8 = 7 × 7 + 7 = 49 + 7 = 56! 🗡️",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      },
+      {
+        "text": "What is 9 × 9?",
+        "answer": 81,
+        "difficulty": 3,
+        "hint": "9 × 9: Try the finger trick! 9 nines = 81. Or: 9 × 10 - 9 = 90 - 9 = 81! 🖐️",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "What is 3 × 11?",
+        "answer": 33,
+        "difficulty": 1,
+        "hint": "3 × 11 = 3 × 10 + 3 = 30 + 3 = 33! Easy as K-pop! 🎵",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "If Mia earns 6 gold stars in each of 5 battles, how many stars does she earn?",
+        "answer": 30,
+        "difficulty": 1,
+        "hint": "6 × 5 = 30. Count by 6s: 6, 12, 18, 24, 30! ⭐",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      }
+    ],
+    "division": [
+      {
+        "text": "What is 42 ÷ 6?",
+        "answer": 7,
+        "difficulty": 2,
+        "hint": "Think: 6 × ? = 42. Count by 6s: 6, 12, 18, 24, 30, 36, 42. That's 7 steps! 🔢",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "Mia has 36 magic crystals to share equally among 9 pouches. How many per pouch?",
+        "answer": 4,
+        "difficulty": 2,
+        "hint": "36 ÷ 9 = 4. Think: 9 × 4 = 36! Division is just multiplication backwards! 💡",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      },
+      {
+        "text": "What is 56 ÷ 8?",
+        "answer": 7,
+        "difficulty": 3,
+        "hint": "56 ÷ 8 = 7. Think: 8 × 7 = 56! You know this from your times tables! ⚡",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "What is 72 ÷ 9?",
+        "answer": 8,
+        "difficulty": 3,
+        "hint": "72 ÷ 9 = 8. Think: 9 × 8 = 72! Practice your 9s! 🌟",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "24 demon crystals are split into groups of 4. How many groups?",
+        "answer": 6,
+        "difficulty": 1,
+        "hint": "24 ÷ 4 = 6. Count by 4s: 4, 8, 12, 16, 20, 24. That's 6 groups! 🎯",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      }
+    ],
+    "fractions": [
+      {
+        "text": "Which fraction equals 2/4?",
+        "answer": "1/2",
+        "choices": ["1/2", "1/3", "3/4", "2/3"],
+        "difficulty": 2,
+        "hint": "2/4 means 2 out of 4 equal parts. If you simplify, 2÷2=1 and 4÷2=2, so 2/4 = 1/2! ✨",
+        "type": "multiple-choice-text"
+      },
+      {
+        "text": "Mia ate 3/8 of her K-pop album stickers. What fraction is left?",
+        "answer": "5/8",
+        "choices": ["5/8", "3/8", "1/2", "4/8"],
+        "difficulty": 2,
+        "hint": "Start with 8/8 (all the stickers), then subtract 3/8: 8/8 - 3/8 = 5/8! 🎵",
+        "type": "multiple-choice-text",
+        "isWordProblem": true
+      },
+      {
+        "text": "Which is BIGGER: 1/2 or 1/4?",
+        "answer": "1/2",
+        "choices": ["1/2", "1/4", "They're equal", "Can't tell"],
+        "difficulty": 1,
+        "hint": "Think of a pizza! If you cut it into 2 pieces vs 4 pieces, the 2-piece slice is BIGGER! 🍕",
+        "type": "multiple-choice-text"
+      },
+      {
+        "text": "What is equivalent to 3/6?",
+        "answer": "1/2",
+        "choices": ["1/2", "1/3", "2/3", "3/4"],
+        "difficulty": 2,
+        "hint": "3/6: divide top and bottom by 3: 3÷3=1 and 6÷3=2, so 3/6 = 1/2! 💫",
+        "type": "multiple-choice-text"
+      }
+    ],
+    "placeValue": [
+      {
+        "text": "What is the value of the digit 7 in 4,738?",
+        "answer": 700,
+        "difficulty": 2,
+        "hint": "In 4,738, the digits are: 4=thousands, 7=hundreds, 3=tens, 8=ones. The 7 is in the hundreds place, so its value is 700! 🔢",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "What number is 3 thousands, 4 hundreds, 2 tens, and 5 ones?",
+        "answer": 3425,
+        "difficulty": 2,
+        "hint": "3,000 + 400 + 20 + 5 = 3,425! Just add each place value! ✨",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "What is 4,000 + 300 + 60 + 7?",
+        "answer": 4367,
+        "difficulty": 1,
+        "hint": "This is expanded form! 4,000 + 300 + 60 + 7 = 4,367! Count each part! 🌟",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "Which number is GREATER: 5,423 or 5,342?",
+        "answer": "5,423",
+        "choices": ["5,423", "5,342", "They're equal", "Can't tell"],
+        "difficulty": 2,
+        "hint": "Compare digit by digit! Both have 5 thousands. Both have... wait, 423 vs 342 - the hundreds are 4 vs 3. 4 > 3, so 5,423 > 5,342! 💡",
+        "type": "multiple-choice-text"
+      }
+    ],
+    "time": [
+      {
+        "text": "Mia's concert starts at 3:00 PM and runs for 45 minutes. When does it end?",
+        "answer": "3:45 PM",
+        "choices": ["3:45 PM", "4:00 PM", "3:30 PM", "4:15 PM"],
+        "difficulty": 2,
+        "hint": "Start at 3:00 PM and count forward 45 minutes. 3:00 + 30 min = 3:30, then + 15 more = 3:45 PM! 🎵",
+        "type": "multiple-choice-text",
+        "isWordProblem": true
+      },
+      {
+        "text": "How many minutes are in 2 hours?",
+        "answer": 120,
+        "difficulty": 1,
+        "hint": "1 hour = 60 minutes. So 2 hours = 60 + 60 = 120 minutes! ⏰",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "Math class started at 9:15 AM and ended at 10:00 AM. How many minutes long was class?",
+        "answer": 45,
+        "difficulty": 2,
+        "hint": "From 9:15 to 9:30 = 15 minutes, plus 9:30 to 10:00 = 30 minutes. Total = 15 + 30 = 45 minutes! 📚",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      },
+      {
+        "text": "How many days are in 3 weeks?",
+        "answer": 21,
+        "difficulty": 1,
+        "hint": "1 week = 7 days. So 3 weeks = 7 × 3 = 21 days! Use your times tables! 🗓️",
+        "type": "multiple-choice"
+      }
+    ],
+    "geometry": [
+      {
+        "text": "A rectangle has a length of 8 units and a width of 5 units. What is its AREA?",
+        "answer": 40,
+        "difficulty": 2,
+        "hint": "Area = length × width = 8 × 5 = 40 square units! 📐",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      },
+      {
+        "text": "A square has sides of 6 cm each. What is its PERIMETER?",
+        "answer": 24,
+        "difficulty": 2,
+        "hint": "Perimeter = sum of all sides. A square has 4 equal sides, so: 6 + 6 + 6 + 6 = 24 cm! Or 4 × 6 = 24! 🔷",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      },
+      {
+        "text": "A rectangle is 9 units long and 3 units wide. What is its PERIMETER?",
+        "answer": 24,
+        "difficulty": 2,
+        "hint": "Perimeter = 2 × length + 2 × width = 2×9 + 2×3 = 18 + 6 = 24 units! 📏",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "Mia's dance stage is a rectangle 10 m long and 4 m wide. What is the AREA?",
+        "answer": 40,
+        "difficulty": 1,
+        "hint": "Area = length × width = 10 × 4 = 40 square meters! Perfect for dancing! 🎵",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      }
+    ],
+    "patterns": [
+      {
+        "text": "What comes next? 3, 6, 9, 12, 15, ___",
+        "answer": 18,
+        "difficulty": 1,
+        "hint": "Count by 3s! Each number is 3 more than the last: 15 + 3 = 18! 🎵",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "What comes next? 5, 10, 20, 40, 80, ___",
+        "answer": 160,
+        "difficulty": 3,
+        "hint": "Each number is DOUBLED! 5×2=10, 10×2=20, 20×2=40, 40×2=80, so 80×2=160! ✨",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "What is the RULE for this pattern: 2, 4, 6, 8, 10?",
+        "answer": "Add 2",
+        "choices": ["Add 2", "Add 4", "Multiply by 2", "Add 3"],
+        "difficulty": 1,
+        "hint": "Look at the difference between each number: 4-2=2, 6-4=2, 8-6=2. The rule is +2! 🔢",
+        "type": "multiple-choice-text"
+      },
+      {
+        "text": "Input: 3, Output: 9. Input: 5, Output: 15. Input: 7, Output: ___",
+        "answer": 21,
+        "difficulty": 2,
+        "hint": "Each input is multiplied by 3! 3×3=9, 5×3=15, so 7×3=21! 🌟",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      },
+      {
+        "text": "What comes next? 100, 95, 90, 85, 80, ___",
+        "answer": 75,
+        "difficulty": 2,
+        "hint": "Each number goes down by 5! 100-5=95, 95-5=90... so 80-5=75! ⬇️",
+        "type": "multiple-choice"
+      }
+    ],
+    "addition": [
+      {
+        "text": "What is 456 + 378?",
+        "answer": 834,
+        "difficulty": 2,
+        "hint": "Add ones: 6+8=14, write 4 carry 1. Add tens: 5+7+1=13, write 3 carry 1. Add hundreds: 4+3+1=8. Answer: 834! 💪",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "Mia collected 1,245 XP on Monday and 876 XP on Tuesday. How much XP total?",
+        "answer": 2121,
+        "difficulty": 3,
+        "hint": "1,245 + 876 = 2,121! Add column by column from right to left! ⭐",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      },
+      {
+        "text": "What is 2,547 + 1,346?",
+        "answer": 3893,
+        "difficulty": 3,
+        "hint": "Add ones: 7+6=13, tens: 4+4+1=9, hundreds: 5+3=8, thousands: 2+1=3. Answer: 3,893! 🌟",
+        "type": "multiple-choice"
+      }
+    ],
+    "subtraction": [
+      {
+        "text": "What is 734 - 256?",
+        "answer": 478,
+        "difficulty": 2,
+        "hint": "You'll need to borrow! 14-6=8, 12-5=7... wait, borrow from hundreds: 6-2=4. Answer: 478! 💡",
+        "type": "multiple-choice"
+      },
+      {
+        "text": "The demon had 2,500 HP. Mia dealt 847 damage. How much HP is left?",
+        "answer": 1653,
+        "difficulty": 3,
+        "hint": "2,500 - 847 = 1,653. Borrow as needed! You've got this! ⚔️",
+        "type": "multiple-choice",
+        "isWordProblem": true
+      }
+    ]
+  }
+}

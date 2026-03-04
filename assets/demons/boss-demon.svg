@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 300" width="240" height="300">
+  <defs>
+    <radialGradient id="bossGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF0080" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FF0080" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bossBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CC0055"/>
+      <stop offset="40%" stop-color="#880088"/>
+      <stop offset="100%" stop-color="#440055"/>
+    </linearGradient>
+    <filter id="bossGlowFx">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Massive aura -->
+  <ellipse cx="120" cy="170" rx="115" ry="130" fill="url(#bossGlow)"/>
+
+  <!-- 4 large horns -->
+  <polygon points="60,78 42,20 82,68" fill="#CC0055"/>
+  <polygon points="90,65 78,10 102,58" fill="#FF0080"/>
+  <polygon points="150,65 138,10 162,58" fill="#FF0080"/>
+  <polygon points="180,78 158,20 198,68" fill="#CC0055"/>
+  <!-- Horn glow -->
+  <line x1="78" y1="10" x2="90" y2="40" stroke="#FFD700" stroke-width="2" opacity="0.6"/>
+  <line x1="162" y1="10" x2="150" y2="40" stroke="#FFD700" stroke-width="2" opacity="0.6"/>
+
+  <!-- Crown -->
+  <polygon points="65,78 80,50 100,72 120,45 140,72 160,50 175,78" fill="#FFD700"/>
+  <!-- Crown jewels: ×, ÷, ½, +, - symbols -->
+  <circle cx="80" cy="62" r="8" fill="#FF0080"/>
+  <text x="76" y="66" font-size="10" fill="white" font-weight="bold">×</text>
+  <circle cx="120" cy="55" r="9" fill="#9D00FF"/>
+  <text x="115" y="60" font-size="11" fill="white" font-weight="bold">÷</text>
+  <circle cx="160" cy="62" r="8" fill="#00BFFF"/>
+  <text x="155" y="66" font-size="10" fill="white" font-weight="bold">½</text>
+
+  <!-- Body - massive and imposing -->
+  <ellipse cx="120" cy="210" rx="88" ry="85" fill="url(#bossBody)"/>
+  <ellipse cx="98" cy="185" rx="38" ry="30" fill="#DD0066" opacity="0.35"/>
+
+  <!-- Armor chest plate with all math symbols -->
+  <polygon points="120,155 168,170 165,230 75,230 72,170" fill="#440055"/>
+  <polygon points="120,155 168,170 120,168 72,170" fill="#660077" opacity="0.5"/>
+  <!-- Math symbol grid on chest -->
+  <text x="98" y="185" font-size="16" fill="#FFD700" font-weight="bold" filter="url(#bossGlowFx)">×</text>
+  <text x="118" y="185" font-size="16" fill="#FF6EC7" font-weight="bold">÷</text>
+  <text x="112" y="205" font-size="14" fill="#00BFFF" font-weight="bold">½</text>
+  <text x="97" y="205" font-size="14" fill="#FFD700">+</text>
+  <text x="126" y="205" font-size="14" fill="#66FF99">−</text>
+
+  <!-- Belt with XP counter -->
+  <rect x="55" y="233" width="130" height="16" rx="8" fill="#FFD700"/>
+  <text x="120" y="245" font-family="Arial" font-size="10" fill="#440055" text-anchor="middle" font-weight="bold">KALI-MATH-ULATOR</text>
+
+  <!-- Head - larger, more menacing -->
+  <ellipse cx="120" cy="118" rx="65" ry="62" fill="url(#bossBody)"/>
+  <ellipse cx="98" cy="97" rx="25" ry="20" fill="#DD0066" opacity="0.25"/>
+
+  <!-- Glowing evil eyes -->
+  <circle cx="96" cy="110" r="22" fill="#1A0033"/>
+  <circle cx="96" cy="110" r="18" fill="#FF0080" filter="url(#bossGlowFx)"/>
+  <circle cx="96" cy="110" r="12" fill="#1A0033"/>
+  <circle cx="96" cy="110" r="7" fill="#FF0080"/>
+  <circle cx="102" cy="104" r="5" fill="white"/>
+
+  <circle cx="144" cy="110" r="22" fill="#1A0033"/>
+  <circle cx="144" cy="110" r="18" fill="#FF0080" filter="url(#bossGlowFx)"/>
+  <circle cx="144" cy="110" r="12" fill="#1A0033"/>
+  <circle cx="144" cy="110" r="7" fill="#FF0080"/>
+  <circle cx="150" cy="104" r="5" fill="white"/>
+
+  <!-- Fierce eyebrows -->
+  <path d="M73,90 Q96,78 116,90" stroke="#440055" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M124,90 Q144,78 167,90" stroke="#440055" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- Nose -->
+  <ellipse cx="120" cy="128" rx="7" ry="5" fill="#AA0044"/>
+
+  <!-- Massive fanged smile -->
+  <path d="M82,142 Q120,165 158,142" fill="#1A0033"/>
+  <path d="M86,142 Q120,158 154,142" fill="#880044"/>
+  <!-- Large fangs -->
+  <polygon points="90,142 95,158 100,142" fill="white"/>
+  <polygon points="105,143 110,162 115,143" fill="white"/>
+  <polygon points="125,143 130,162 135,143" fill="white"/>
+  <polygon points="140,142 145,158 150,142" fill="white"/>
+
+  <!-- Huge arms -->
+  <!-- Left -->
+  <path d="M32,188 Q12,220 22,258" stroke="#440055" stroke-width="24" stroke-linecap="round" fill="none"/>
+  <path d="M32,188 Q12,220 22,258" stroke="#880088" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <circle cx="22" cy="258" r="26" fill="#880088"/>
+  <text x="8" y="264" font-size="24" fill="#FFD700" font-weight="bold" filter="url(#bossGlowFx)">✖</text>
+
+  <!-- Right -->
+  <path d="M208,188 Q228,220 218,258" stroke="#440055" stroke-width="24" stroke-linecap="round" fill="none"/>
+  <path d="M208,188 Q228,220 218,258" stroke="#880088" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <circle cx="218" cy="258" r="26" fill="#880088"/>
+  <text x="204" y="264" font-size="24" fill="#FFD700" font-weight="bold" filter="url(#bossGlowFx)">÷</text>
+
+  <!-- Floating math symbols aura -->
+  <text x="5" y="60" font-size="18" fill="#FFD700" opacity="0.7">∑</text>
+  <text x="210" y="55" font-size="18" fill="#FF6EC7" opacity="0.7">∞</text>
+  <text x="8" y="240" font-size="16" fill="#00BFFF" opacity="0.7">π</text>
+  <text x="215" y="235" font-size="16" fill="#66FF99" opacity="0.7">√</text>
+
+  <!-- BOSS label -->
+  <rect x="82" y="5" width="76" height="22" rx="11" fill="#FFD700"/>
+  <text x="120" y="20" font-family="Arial" font-size="12" fill="#440055" text-anchor="middle" font-weight="bold">★ BOSS ★</text>
+</svg>

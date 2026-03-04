@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250" width="200" height="250">
+  <defs>
+    <radialGradient id="fiendGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#9D00FF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#9D00FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fiendBody" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#CC44FF"/>
+      <stop offset="100%" stop-color="#7700BB"/>
+    </radialGradient>
+    <filter id="fiendGlowFilter">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Glow aura -->
+  <ellipse cx="100" cy="140" rx="90" ry="100" fill="url(#fiendGlow)"/>
+
+  <!-- Horns -->
+  <polygon points="65,55 55,20 78,50" fill="#9D00FF"/>
+  <polygon points="135,55 145,20 122,50" fill="#9D00FF"/>
+  <!-- Horn glow -->
+  <polygon points="65,55 55,20 78,50" fill="#CC44FF" opacity="0.5"/>
+  <polygon points="135,55 145,20 122,50" fill="#CC44FF" opacity="0.5"/>
+
+  <!-- Main body blob -->
+  <ellipse cx="100" cy="150" rx="75" ry="80" fill="url(#fiendBody)"/>
+  <!-- Body highlight -->
+  <ellipse cx="80" cy="120" rx="30" ry="25" fill="#DD66FF" opacity="0.4"/>
+
+  <!-- Head -->
+  <ellipse cx="100" cy="90" rx="55" ry="52" fill="url(#fiendBody)"/>
+  <!-- Head highlight -->
+  <ellipse cx="83" cy="72" rx="20" ry="16" fill="#DD66FF" opacity="0.4"/>
+
+  <!-- × symbol eyes -->
+  <!-- Left eye background -->
+  <circle cx="78" cy="85" r="18" fill="#1A0033"/>
+  <circle cx="78" cy="85" r="14" fill="#FFD700"/>
+  <!-- Left × marks -->
+  <line x1="68" y1="75" x2="88" y2="95" stroke="#1A0033" stroke-width="4" stroke-linecap="round"/>
+  <line x1="88" y1="75" x2="68" y2="95" stroke="#1A0033" stroke-width="4" stroke-linecap="round"/>
+  <!-- Left eye glow -->
+  <circle cx="78" cy="85" r="18" fill="#9D00FF" opacity="0.3" filter="url(#fiendGlowFilter)"/>
+
+  <!-- Right eye background -->
+  <circle cx="122" cy="85" r="18" fill="#1A0033"/>
+  <circle cx="122" cy="85" r="14" fill="#FFD700"/>
+  <!-- Right × marks -->
+  <line x1="112" y1="75" x2="132" y2="95" stroke="#1A0033" stroke-width="4" stroke-linecap="round"/>
+  <line x1="132" y1="75" x2="112" y2="95" stroke="#1A0033" stroke-width="4" stroke-linecap="round"/>
+  <!-- Right eye glow -->
+  <circle cx="122" cy="85" r="18" fill="#9D00FF" opacity="0.3" filter="url(#fiendGlowFilter)"/>
+
+  <!-- Menacing eyebrows -->
+  <path d="M60,65 Q78,57 96,65" stroke="#4A0080" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M104,65 Q122,57 140,65" stroke="#4A0080" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Sharp teeth grin -->
+  <path d="M68,112 Q100,130 132,112" fill="#1A0033"/>
+  <path d="M72,112 Q100,125 128,112" fill="#CC44FF"/>
+  <!-- Teeth -->
+  <polygon points="78,112 82,122 86,112" fill="white"/>
+  <polygon points="90,114 94,126 98,114" fill="white"/>
+  <polygon points="102,114 106,126 110,114" fill="white"/>
+  <polygon points="114,112 118,122 122,112" fill="white"/>
+
+  <!-- Arms with × symbols -->
+  <!-- Left arm -->
+  <path d="M25,140 Q20,170 35,195" stroke="#9D00FF" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <path d="M25,140 Q20,170 35,195" stroke="#CC44FF" stroke-width="14" stroke-linecap="round" fill="none"/>
+  <!-- Left hand -->
+  <circle cx="35" cy="195" r="20" fill="#CC44FF"/>
+  <text x="25" y="201" font-size="22" fill="#FFD700" font-weight="bold">×</text>
+
+  <!-- Right arm -->
+  <path d="M175,140 Q180,170 165,195" stroke="#9D00FF" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <path d="M175,140 Q180,170 165,195" stroke="#CC44FF" stroke-width="14" stroke-linecap="round" fill="none"/>
+  <!-- Right hand -->
+  <circle cx="165" cy="195" r="20" fill="#CC44FF"/>
+  <text x="155" y="201" font-size="22" fill="#FFD700" font-weight="bold">×</text>
+
+  <!-- Floating × symbols -->
+  <text x="15" y="80" font-size="18" fill="#FFD700" opacity="0.8" filter="url(#fiendGlowFilter)">×</text>
+  <text x="168" y="75" font-size="18" fill="#FFD700" opacity="0.8" filter="url(#fiendGlowFilter)">×</text>
+  <text x="45" y="220" font-size="14" fill="#FFD700" opacity="0.6">×</text>
+  <text x="148" y="225" font-size="14" fill="#FFD700" opacity="0.6">×</text>
+
+  <!-- Body × pattern -->
+  <text x="85" y="165" font-size="28" fill="#9D00FF" opacity="0.6">×</text>
+
+  <!-- Name -->
+  <rect x="30" y="228" width="140" height="20" rx="10" fill="#4A0080" opacity="0.8"/>
+  <text x="100" y="242" font-family="Arial" font-size="11" fill="#FFD700" text-anchor="middle" font-weight="bold">MULTIPLI FIEND</text>
+</svg>

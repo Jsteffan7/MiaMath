@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Battle! – MiaMath</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    .battle-bg {
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(157,0,255,0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255,0,128,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(0,191,255,0.08) 0%, transparent 60%),
+        linear-gradient(180deg, #080018 0%, #0d0025 50%, #080018 100%);
+    }
+    /* Stage floor line */
+    .stage-floor {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--purple), var(--pink), var(--blue), transparent);
+      opacity: 0.6;
+    }
+    /* Demon sprite container */
+    #demonSprite {
+      width: clamp(140px, 20vw, 220px);
+      height: clamp(160px, 24vw, 260px);
+      animation: demonIdle 2.5s ease-in-out infinite;
+    }
+    #miaSprite {
+      width: clamp(120px, 17vw, 200px);
+      height: auto;
+      animation: heroFloat 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(255,105,180,0.6));
+    }
+    /* Daily progress bar (top) */
+    #dailyProgress {
+      display: none;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .daily-prog-track {
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .daily-prog-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink));
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+    /* Word problem styling */
+    .word-problem-icon { font-size: 24px; margin-bottom: 6px; }
+
+    /* Mia side energy hearts */
+    .energy-hearts {
+      display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+    }
+    .energy-heart {
+      font-size: 20px;
+      transition: all 0.4s;
+    }
+    .energy-heart.lost {
+      opacity: 0.2;
+      filter: grayscale(1);
+    }
+  </style>
+</head>
+<body class="game-page">
+
+  <!-- Background -->
+  <div class="battle-bg" id="starsContainer">
+    <div class="stage-floor"></div>
+  </div>
+  <canvas id="confettiCanvas"></canvas>
+  <div id="feedbackOverlay" class="feedback-overlay"></div>
+
+  <!-- ══ HUD ══ -->
+  <header class="game-hud">
+    <div class="hud-left">
+      <button class="hud-btn" id="hudHomeBtn" title="Go Home">🏠</button>
+      <div class="level-badge" id="levelDisplay">Lv.1</div>
+    </div>
+
+    <div class="hud-center">
+      <div class="xp-bar-container">
+        <div class="xp-label">
+          <span>XP</span>
+          <span><span id="xpCurrent">0</span> / <span id="xpNext">100</span></span>
+        </div>
+        <div class="xp-bar-track">
+          <div class="xp-bar-fill" id="xpBarFill" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-right">
+      <div class="streak-badge" id="streakBadge">🔥 0</div>
+      <button class="hud-btn" id="soundToggle" title="Toggle Sound">🔊</button>
+    </div>
+  </header>
+
+  <!-- ══ DAILY PROGRESS ══ -->
+  <div id="dailyProgress" style="padding:8px 20px 0;position:relative;z-index:2;">
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-muted);">
+      <span id="dailyProgressText">Question 1 of 10</span>
+      <span>🌙 Daily Challenge</span>
+    </div>
+    <div class="daily-prog-track">
+      <div class="daily-prog-fill" id="dailyProgressFill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- ══ BATTLE ARENA ══ -->
+  <main class="battle-arena" id="battleArena">
+
+    <div class="battle-stage">
+
+      <!-- ── Demon Side ── -->
+      <div class="demon-side">
+        <!-- Speech bubble -->
+        <div class="speech-bubble">
+          <div class="demon-name-badge" id="demonNameBadge">Loading...</div>
+          <div class="demon-taunt" id="demonSpeech">Prepare for battle!</div>
+        </div>
+
+        <!-- HP segments -->
+        <div class="health-bar-container">
+          <div class="bar-label">
+            <span class="bar-name" style="color:var(--red)">❤️ HP</span>
+          </div>
+          <div class="hp-segments" id="demonHPSegments"></div>
+        </div>
+
+        <!-- Demon sprite -->
+        <div class="fighter-sprite demon-sprite">
+          <object id="demonSprite" type="image/svg+xml" data="assets/demons/multipli-fiend.svg"
+                  aria-label="Demon">
+            <!-- Fallback -->
+            <div style="font-size:100px;text-align:center">👹</div>
+          </object>
+        </div>
+      </div>
+
+      <!-- ── VS ── -->
+      <div class="vs-badge">VS</div>
+
+      <!-- ── Mia Side ── -->
+      <div class="mia-side">
+        <!-- Mia sprite -->
+        <div class="fighter-sprite mia-sprite">
+          <img id="miaSprite" src="assets/characters/mia.svg" alt="Mia"
+               onerror="this.style.fontSize='80px';this.outerHTML='<div style=&quot;font-size:80px;animation:heroFloat 3s ease-in-out infinite&quot;>🎤</div>'">
+        </div>
+
+        <!-- Mia's energy -->
+        <div class="health-bar-container" style="text-align:center">
+          <div class="bar-label">
+            <span class="bar-name" style="color:var(--blue)">⚡ MIA</span>
+          </div>
+          <div class="energy-hearts" id="miaEnergyHearts"></div>
+          <div class="hp-track" style="margin-top:6px">
+            <div class="energy-fill" id="miaEnergyFill" style="width:100%"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.battle-stage -->
+
+    <!-- ══ QUESTION AREA ══ -->
+    <div class="question-area" id="questionArea">
+
+      <div class="category-tag" id="categoryTag">📚 Math</div>
+
+      <div class="question-text" id="questionText">
+        Get ready, Mia!
+      </div>
+
+      <!-- Multiple choice -->
+      <div id="choiceArea">
+        <div class="choices-grid" id="choicesGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Fill in blank -->
+      <div id="fillArea" style="display:none">
+        <form class="fill-blank-form" id="fillBlankForm">
+          <input type="text" id="fillBlankInput" class="fill-blank-input"
+                 placeholder="?" inputmode="decimal" autocomplete="off" autocorrect="off">
+          <button type="submit" class="submit-btn">⚡ Strike!</button>
+        </form>
+      </div>
+
+      <!-- Hint -->
+      <div class="hint-area" id="hintArea"></div>
+
+    </div><!-- /.question-area -->
+
+  </main><!-- /.battle-arena -->
+
+  <!-- ══ MODE INTRO OVERLAY ══ -->
+  <div class="mode-intro" id="modeIntro">
+    <div class="intro-card">
+      <div class="intro-demon-preview">
+        <object type="image/svg+xml" data="assets/demons/multipli-fiend.svg"
+                style="width:180px;height:auto"
+                onerror="this.outerHTML='<div style=&quot;font-size:90px;text-align:center&quot;>👹</div>'">
+        </object>
+      </div>
+      <div class="intro-demon-name" id="introDemonName">???</div>
+      <div class="intro-sub" id="introSub">Demon appears!</div>
+      <p class="intro-desc" id="introDesc">Prepare for battle!</p>
+      <button class="intro-start-btn" id="introStartBtn">⚔️ Let's Battle!</button>
+    </div>
+  </div>
+
+  <!-- ══ RESULT OVERLAY ══ -->
+  <div class="result-overlay" id="resultOverlay">
+    <div class="result-card" id="resultCard">
+      <div class="result-icon" id="resultIcon">🏆</div>
+      <h2 class="result-title" id="resultTitle">VICTORY!</h2>
+      <p class="result-msg" id="resultMsg"></p>
+
+      <div class="result-stats">
+        <div class="res-stat">
+          <div class="res-stat-val" id="resultAccuracy">--</div>
+          <div class="res-stat-lbl">Accuracy</div>
+        </div>
+        <div class="res-stat">
+          <div class="res-stat-val" id="resultStreak">--</div>
+          <div class="res-stat-lbl">Best Streak</div>
+        </div>
+      </div>
+
+      <div class="result-xp-gain" id="resultXPGain"></div>
+
+      <div class="badge-unlocked" id="badgeUnlocked">
+        <div class="badge-unlocked-title">🏅 NEW BADGE UNLOCKED!</div>
+        <div class="badge-unlocked-name" id="badgeUnlockedName"></div>
+      </div>
+
+      <div class="result-btns">
+        <button class="result-btn primary" id="btnNextDemon">⚔️ Next Demon!</button>
+        <button class="result-btn secondary" id="btnRetry">🔄 Try Again</button>
+        <button class="result-btn secondary" id="btnHome">🏠 Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/progressSystem.js"></script>
+  <script src="js/audioManager.js"></script>
+  <script src="js/mathEngine.js"></script>
+  <script src="js/uiEngine.js"></script>
+  <script src="js/gameEngine.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    // Override UIEngine.updateHPBar to also update hearts
+    const _origUpdateHP = UIEngine.updateHPBar;
+    UIEngine.updateHPBar = function(id, current, max) {
+      _origUpdateHP(id, current, max);
+      if (id === 'miaEnergy') {
+        const hearts = document.getElementById('miaEnergyHearts');
+        if (hearts) {
+          hearts.innerHTML = '';
+          for (let i = 0; i < max; i++) {
+            const h = document.createElement('span');
+            h.className = `energy-heart${i >= current ? ' lost' : ''}`;
+            h.textContent = i < current ? '⚡' : '💔';
+            hearts.appendChild(h);
+          }
+        }
+      }
+    };
+
+    // Override UIEngine.showModeIntro to work with this page's elements
+    const _origShowIntro = UIEngine.showModeIntro;
+    UIEngine.showModeIntro = function(demonData, onStart) {
+      const intro = document.getElementById('modeIntro');
+      if (!intro) return;
+      const nameEl = document.getElementById('introDemonName');
+      const subEl  = document.getElementById('introSub');
+      const descEl = document.getElementById('introDesc');
+      const btn    = document.getElementById('introStartBtn');
+      const obj    = intro.querySelector('object');
+
+      if (obj && demonData.sprite) obj.data = demonData.sprite;
+      if (nameEl) nameEl.textContent = demonData.name;
+      if (subEl)  subEl.textContent  = (demonData.category || 'Math') + ' Master';
+      if (descEl) descEl.textContent  = demonData.intro || `${demonData.name} has appeared!`;
+
+      intro.classList.remove('hide');
+      if (btn) {
+        btn.onclick = () => {
+          intro.classList.add('hide');
+          AudioManager.playClick();
+          setTimeout(() => { if (onStart) onStart(); }, 400);
+        };
+      }
+    };
+  </script>
+</body>
+</html>
