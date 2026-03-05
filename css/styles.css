@@ -51,6 +51,37 @@ img, svg { max-width: 100%; }
 button { cursor: pointer; font-family: inherit; }
 
 /* ============================================
+   TOUCH & MOBILE GLOBALS
+   ============================================ */
+/* Eliminate 300ms tap delay and sticky hover on touch devices */
+a, button, .mode-card, .choice-btn, .hud-btn, .result-btn,
+.intro-start-btn, .submit-btn, .dashboard-btn, .back-btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+/* Prevent text highlight during rapid taps */
+.choice-btn, .result-btn, .intro-start-btn, .submit-btn, .hud-btn {
+  -webkit-user-select: none;
+  user-select: none;
+}
+/* On touch-only devices, disable hover transforms to avoid sticky states */
+@media (hover: none) {
+  .mode-card:hover          { transform: none; background: var(--bg-card); }
+  .choice-btn:hover:not(:disabled) { transform: none; border-color: var(--border); box-shadow: none; }
+  .result-btn:hover         { transform: none; }
+  .submit-btn:hover         { transform: none; box-shadow: none; }
+  .intro-start-btn:hover    { transform: none; }
+  .dashboard-btn:hover      { transform: none; box-shadow: none; }
+  .stat-card:hover          { transform: none; }
+  .back-btn:hover           { transform: none; }
+  /* Use :active for touch feedback instead */
+  .choice-btn:active:not(:disabled) { transform: scale(0.95); background: rgba(255,255,255,0.14); }
+  .mode-card:active         { transform: scale(0.97); background: var(--bg-card-hover); }
+  .result-btn:active        { transform: scale(0.95); }
+  .submit-btn:active        { transform: scale(0.95); }
+}
+
+/* ============================================
    BACKGROUND / STARS
    ============================================ */
 .stars-bg {
@@ -1106,30 +1137,229 @@ button { cursor: pointer; font-family: inherit; }
 ::-webkit-scrollbar-thumb:hover { background: var(--pink); }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE — SMALL PHONE (≤ 480px)
    ============================================ */
-@media (max-width: 640px) {
-  .mode-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .card-title { font-size: 16px; }
-  .card-icon { font-size: 28px; }
-  .battle-stage { min-height: 200px; }
-  .choices-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .choice-btn { padding: 12px 8px; font-size: 16px; }
-  .question-text { font-size: 18px; }
-  .game-hud { padding: 8px 12px; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .badges-grid { grid-template-columns: repeat(2, 1fr); }
-  .result-card { padding: 24px 20px; }
-  .result-title { font-size: 32px; }
-  .hero-card { flex-direction: column; text-align: center; }
+@media (max-width: 480px) {
+  /* Safe-area insets for notched iPhones */
+  .game-hud {
+    padding-top: max(8px, env(safe-area-inset-top));
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+    padding-bottom: 8px;
+  }
+  .landing-container {
+    padding: 14px 12px max(50px, calc(40px + env(safe-area-inset-bottom)));
+    gap: 18px;
+  }
+
+  /* ── Title ── */
+  .academy-badge { font-size: 11px; letter-spacing: 1.5px; }
+  .game-title { font-size: clamp(44px, 18vw, 62px); }
+  .title-subtitle { font-size: 12px; letter-spacing: 1px; }
+
+  /* ── Hero display ── */
+  .hero-display { gap: 12px; }
+  .hero-character img, .hero-character svg { width: 110px; }
+  .welcome-message { padding: 12px 14px; }
+  .welcome-line { font-size: 17px; }
+  .welcome-sub { font-size: 13px; }
+  .name-highlight { font-size: 18px; }
+
+  /* ── Mode cards ── */
+  .mode-grid { gap: 8px; }
+  .mode-card { padding: 14px 8px; }
+  .card-icon { font-size: 26px; margin-bottom: 5px; }
+  .card-title { font-size: 13px; margin-bottom: 3px; }
+  .card-desc { font-size: 10px; }
+
+  /* ── Quick stats ── */
+  .quick-stats { padding: 10px 12px; gap: 10px; }
+  .stat-label { font-size: 10px; }
+  .stat-value { font-size: 14px; }
+  .stat-icon { font-size: 15px; }
+
+  /* ── HUD ── */
+  .game-hud { gap: 6px; flex-wrap: nowrap; }
+  .hud-left { gap: 7px; }
+  .hud-right { gap: 7px; }
+  .hud-center { max-width: 120px; }
+  .xp-label { font-size: 9px; }
+  .xp-bar-track { height: 7px; }
+  .level-badge { font-size: 12px; padding: 4px 8px; }
+  .streak-badge { font-size: 11px; padding: 4px 7px; }
+  .hud-btn { padding: 6px 9px; font-size: 14px; min-width: 34px; min-height: 34px; }
+
+  /* ── Battle arena ── */
+  .battle-arena { padding: 8px 10px; gap: 8px; }
+  .battle-stage { min-height: 145px; gap: 4px; align-items: center; }
+  .demon-side, .mia-side { gap: 4px; max-width: 125px; }
+  .fighter-sprite img, .fighter-sprite svg { width: clamp(72px, 19vw, 108px); }
+
+  /* Compact speech bubble */
+  .speech-bubble {
+    padding: 6px 8px;
+    font-size: 10px;
+    max-width: 125px;
+    border-radius: 10px;
+  }
+  .demon-name-badge { font-size: 12px; }
+  .demon-taunt { font-size: 10px; }
+  .vs-badge { font-size: 19px; }
+
+  /* HP/energy bars */
+  .health-bar-container, .energy-bar-container { max-width: 125px; }
+  .hp-track, .energy-track { height: 10px; }
+  .bar-name { font-size: 10px; }
+  .hp-segment { height: 10px; }
+  .energy-hearts { gap: 3px; }
+  .energy-heart { font-size: 13px; }
+
+  /* ── Question area ── */
+  .question-area { padding: 11px 10px; border-radius: 14px; }
+  .category-tag { font-size: 10px; padding: 3px 10px; margin-bottom: 8px; }
+  .question-text { font-size: 16px; margin-bottom: 11px; line-height: 1.3; }
+  .question-text.word-problem { font-size: 14px; padding: 9px; }
+
+  /* Choice buttons – big tap targets */
+  .choices-grid { grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 8px; }
+  .choice-btn {
+    padding: 12px 6px;
+    font-size: 18px;
+    min-height: 54px;
+    border-radius: 12px;
+  }
+
+  /* Fill-blank */
+  .fill-blank-form { gap: 8px; }
+  .fill-blank-input {
+    width: 115px;
+    padding: 10px 10px;
+    font-size: 24px; /* ≥16px avoids iOS zoom */
+    border-radius: 12px;
+  }
+  .submit-btn { padding: 11px 15px; font-size: 15px; border-radius: 12px; min-height: 46px; }
+  .hint-area { font-size: 12px; padding: 8px 10px; margin-top: 7px; }
+
+  /* ── Result overlay ── */
+  .result-card { padding: 20px 13px; max-width: 96vw; border-radius: 16px; }
+  .result-icon { font-size: 46px; margin-bottom: 6px; }
+  .result-title { font-size: 27px; margin-bottom: 5px; }
+  .result-msg { font-size: 13px; margin-bottom: 12px; }
+  .result-stats { gap: 8px; margin-bottom: 14px; }
+  .res-stat { padding: 9px 12px; }
+  .res-stat-val { font-size: 20px; }
+  .res-stat-lbl { font-size: 11px; }
+  .result-xp-gain { font-size: 19px; margin-bottom: 12px; }
+  .badge-unlocked { padding: 9px; margin-bottom: 12px; }
+  .badge-unlocked-name { font-size: 17px; }
+  .result-btns { gap: 7px; flex-direction: column; }
+  .result-btn { padding: 13px 14px; font-size: 14px; min-height: 46px; width: 100%; }
+
+  /* ── Mode intro overlay ── */
+  .intro-card { padding: 20px 13px; border-radius: 16px; }
+  .intro-demon-preview { width: 105px; margin-bottom: 10px; }
+  .intro-demon-name { font-size: 21px; }
+  .intro-sub { font-size: 13px; margin-bottom: 10px; }
+  .intro-desc { font-size: 14px; margin-bottom: 15px; }
+  .intro-start-btn { padding: 14px 26px; font-size: 17px; min-height: 50px; }
+
+  /* ── Dashboard ── */
+  .dashboard-header { padding: 12px 14px; gap: 10px; }
+  .dashboard-title { font-size: 17px; }
+  .back-btn { padding: 8px 11px; font-size: 13px; }
+  .dashboard-container { padding: 14px 12px 50px; gap: 16px; }
+  .hero-card { flex-direction: column; text-align: center; padding: 16px 13px; gap: 12px; }
+  .hero-avatar { width: 68px; height: 68px; font-size: 33px; }
+  .hero-player-name { font-size: 23px; }
+  .hero-xp-bar-container { max-width: 100%; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .stat-card { padding: 13px 8px; }
+  .stat-card-icon { font-size: 20px; margin-bottom: 5px; }
+  .stat-card-value { font-size: 22px; }
+  .stat-card-label { font-size: 11px; }
+  .section-title { font-size: 16px; margin-bottom: 10px; }
+  .skill-row { gap: 7px; margin-bottom: 9px; }
+  .skill-name { width: 84px; font-size: 12px; }
+  .skill-icon { font-size: 15px; width: 20px; }
+  .skill-pct { font-size: 11px; width: 30px; }
+  .badges-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .badge-card { padding: 12px 8px; border-radius: 12px; }
+  .badge-icon { font-size: 24px; margin-bottom: 5px; }
+  .badge-name { font-size: 11px; }
+  .badge-desc { font-size: 9px; }
+  .recommend-grid { grid-template-columns: 1fr; gap: 8px; }
+  .recommend-card { padding: 13px; flex-direction: row; align-items: center; flex-wrap: wrap; }
+  .rec-icon { font-size: 22px; }
+  .dashboard-btn { padding: 10px 18px; font-size: 14px; }
 }
 
+/* ============================================
+   RESPONSIVE — MID PHONE (481px – 640px)
+   ============================================ */
+@media (min-width: 481px) and (max-width: 640px) {
+  .game-hud { padding: 8px 14px; gap: 8px; }
+  .hud-center { max-width: 170px; }
+  .battle-arena { padding: 10px 14px; gap: 10px; }
+  .battle-stage { min-height: 185px; gap: 6px; align-items: center; }
+  .fighter-sprite img, .fighter-sprite svg { width: clamp(88px, 17vw, 125px); }
+  .demon-side, .mia-side { max-width: 145px; }
+  .speech-bubble { max-width: 150px; font-size: 11px; padding: 7px 9px; }
+  .vs-badge { font-size: 23px; }
+  .health-bar-container, .energy-bar-container { max-width: 145px; }
+  .question-area { padding: 13px 11px; }
+  .question-text { font-size: 17px; }
+  .choices-grid { gap: 8px; }
+  .choice-btn { padding: 13px 8px; font-size: 18px; min-height: 54px; }
+  .fill-blank-input { font-size: 24px; }
+  .result-card { padding: 24px 18px; max-width: 94vw; }
+  .result-title { font-size: 30px; }
+  .result-btns { flex-wrap: wrap; }
+  .hero-card { flex-direction: column; text-align: center; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .badges-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================
+   RESPONSIVE — TABLET (641px – 900px)
+   ============================================ */
 @media (min-width: 641px) and (max-width: 900px) {
   .mode-grid { max-width: 480px; }
   .battle-stage { min-height: 240px; }
   .choices-grid { grid-template-columns: repeat(2, 1fr); }
+  .choice-btn { min-height: 52px; font-size: 20px; }
+  .question-area { padding: 20px 18px; }
+  .fighter-sprite img, .fighter-sprite svg { width: clamp(105px, 15vw, 165px); }
+  .stats-grid { grid-template-columns: repeat(3, 1fr); }
+  .result-card { max-width: 88vw; }
+  .result-btns { flex-wrap: wrap; }
+  .hero-card { flex-wrap: wrap; }
 }
 
+/* ============================================
+   RESPONSIVE — DESKTOP (901px+)
+   ============================================ */
 @media (min-width: 901px) {
   .battle-stage { min-height: 300px; }
+}
+
+/* ============================================
+   LANDSCAPE PHONE (wide + short viewport)
+   ============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .game-hud { padding: 5px 12px; gap: 6px; }
+  .xp-bar-track { height: 6px; }
+  .battle-arena { padding: 5px 10px; gap: 5px; }
+  .battle-stage { min-height: 95px; }
+  .fighter-sprite img, .fighter-sprite svg { width: clamp(52px, 11vh, 85px); }
+  .speech-bubble { display: none; } /* hide in landscape to save vertical space */
+  .health-bar-container, .energy-bar-container { max-width: 105px; }
+  .question-area { padding: 7px 10px; }
+  .question-text { font-size: 14px; margin-bottom: 7px; }
+  .choices-grid { gap: 5px; margin-bottom: 5px; }
+  .choice-btn { padding: 8px 5px; font-size: 15px; min-height: 40px; }
+  .hint-area { padding: 6px 8px; font-size: 11px; margin-top: 5px; }
+  .intro-card { padding: 14px; max-height: 88vh; overflow-y: auto; }
+  .intro-demon-preview { width: 65px; margin-bottom: 6px; }
+  .result-card { padding: 14px; max-height: 88vh; overflow-y: auto; }
+  .result-btns { flex-wrap: wrap; gap: 6px; }
 }
