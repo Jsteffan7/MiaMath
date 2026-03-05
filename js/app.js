@@ -163,15 +163,24 @@ function wireGameEvents(mode) {
 
   // ---- Practice start ----
   GameEngine.on('practice_start', ({ demon }) => {
-    document.getElementById('demonNameBadge').textContent = '📚 Practice Mode';
-    document.getElementById('demonSpeech').textContent = 'Let\'s practice your math skills, Mia!';
-    document.getElementById('demonSprite')?.setAttribute('data', 'assets/characters/mia.svg');
-    UIEngine.updateSegmentHP('demonHPSegments', 0, 0);
+    // Hide the full demon side and VS badge — practice has no enemy to fight
     document.querySelector('.demon-side')?.classList.add('hidden');
+    document.querySelector('.vs-badge')?.classList.add('hidden');
+
+    // Repurpose the speech bubble area as a practice dojo banner
+    document.getElementById('demonNameBadge').textContent = '📚 Practice Dojo';
+    document.getElementById('demonSpeech').textContent    = 'Keep going, Mia! Every question makes you stronger!';
+
+    // Energy hearts still shown for practice mode
     setMiaDisplay();
+
+    // startPractice() already called nextQuestion() — no beginBattle() needed here
   });
 
   // ---- Daily start ----
+  // Bug fix: removed GameEngine.beginBattle() — startDaily() already sets phase='battle'
+  // and emits question_ready directly after this handler returns, so calling beginBattle()
+  // here caused a double question_ready emission, submitting answers twice on Q1.
   GameEngine.on('daily_start', ({ demon, total }) => {
     setDemonDisplay(demon);
     setMiaDisplay();
@@ -180,7 +189,7 @@ function wireGameEvents(mode) {
       progressEl.style.display = 'block';
       updateDailyProgress(0, total);
     }
-    GameEngine.beginBattle();
+    // question_ready is emitted by startDaily() after this handler returns
   });
 
   // ---- Question ready ----

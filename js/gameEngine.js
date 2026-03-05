@@ -205,11 +205,15 @@ const GameEngine = (() => {
       hp: 999,
       color: '#00BFFF'
     };
+    state.demonHP      = 999;  // Bug fix: must be set explicitly so victory never triggers
+    state.miaEnergy    = 5;
+    state.miaMaxEnergy = 5;
     state.questionsAnswered = 0;
     state.questionsCorrect  = 0;
-    state.wrongStreak = 0;
-    state.phase = 'battle';
-    state.difficulty = 1;
+    state.wrongStreak  = 0;
+    state.battleXP     = 0;
+    state.phase        = 'battle';
+    state.difficulty   = 1;
     emit('practice_start', { demon: state.demon });
     nextQuestion();
   }
@@ -231,12 +235,15 @@ const GameEngine = (() => {
     state.questionsAnswered = 0;
     state.questionsCorrect  = 0;
     state.demon = getDailyDemon();
-    state.demonHP = 10;
-    state.miaEnergy = 10;
-    state.phase = 'battle';
+    state.demonHP      = 10;
+    state.miaEnergy    = 10;
+    state.miaMaxEnergy = 10;  // Bug fix: was never set, causing wrong heart count
+    state.phase        = 'battle';
     emit('daily_start', { demon: state.demon, total: 10 });
-    emit('question_ready', { question: state.dailyQuestions[0], num: 1, total: 10 });
+    // Note: daily_start handler sets up the UI; first question is emitted after
+    // handler returns so the demon display is ready before question appears.
     state.question = state.dailyQuestions[0];
+    emit('question_ready', { question: state.dailyQuestions[0], num: 1, total: 10 });
   }
 
   function initBattle(demon) {
@@ -336,8 +343,8 @@ const GameEngine = (() => {
         emit('streak_milestone', { streak: ps.currentStreak });
       }
 
-      // Check win
-      if (state.demonHP <= 0) {
+      // Check win — skip for practice (endless) and daily (has its own completion logic)
+      if (state.demonHP <= 0 && state.mode !== 'practice' && state.mode !== 'daily') {
         setTimeout(() => triggerVictory(), 800);
         return;
       }
@@ -359,8 +366,8 @@ const GameEngine = (() => {
         miaMaxEnergy: state.miaMaxEnergy
       });
 
-      // Check defeat
-      if (state.miaEnergy <= 0 && state.mode !== 'practice') {
+      // Check defeat — daily mode always completes all 10 questions, never defeats
+      if (state.miaEnergy <= 0 && state.mode !== 'practice' && state.mode !== 'daily') {
         setTimeout(() => triggerDefeat(), 600);
         return;
       }
