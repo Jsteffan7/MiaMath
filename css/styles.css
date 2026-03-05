@@ -105,7 +105,7 @@ a, button, .mode-card, .choice-btn, .hud-btn, .result-btn,
 /* ============================================
    LANDING PAGE
    ============================================ */
-.landing-page { position: relative; overflow: hidden; }
+.landing-page { position: relative; overflow-x: hidden; }
 
 .landing-container {
   position: relative;
