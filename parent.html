@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Parent Progress Report – MiaMath</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <style>
+    /* ── Report Header ── */
+    .report-header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(12px);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .report-header-left { display: flex; align-items: center; gap: 14px; }
+    .report-title {
+      font-family: var(--font-title);
+      font-size: 24px;
+      background: linear-gradient(90deg, var(--gold), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .report-subtitle { font-size: 12px; color: var(--text-muted); }
+    .print-btn {
+      background: rgba(255,215,0,0.12);
+      border: 1px solid rgba(255,215,0,0.35);
+      border-radius: 10px;
+      padding: 9px 18px;
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .print-btn:hover { background: rgba(255,215,0,0.22); }
+
+    /* ── Main container ── */
+    .report-container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 20px 70px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    /* ── Date banner ── */
+    .report-banner {
+      background: linear-gradient(135deg, rgba(255,215,0,0.09), rgba(157,0,255,0.09));
+      border: 1px solid rgba(255,215,0,0.22);
+      border-radius: var(--radius);
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .report-banner-name {
+      font-family: var(--font-title);
+      font-size: 20px;
+      color: var(--gold);
+    }
+    .report-banner-sub { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
+    .report-banner-right { text-align: right; font-size: 13px; color: var(--text-muted); }
+    .report-banner-right strong { color: white; }
+
+    /* ── Overview grid ── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 14px;
+    }
+    .ov-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 14px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .ov-card:hover { transform: translateY(-2px); }
+    .ov-icon  { font-size: 30px; margin-bottom: 7px; }
+    .ov-value { font-family: var(--font-title); font-size: 34px; line-height: 1.1; }
+    .ov-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ── Grade block ── */
+    .grade-wrap { display: flex; gap: 16px; align-items: stretch; flex-wrap: wrap; }
+    .grade-letter-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      min-width: 120px;
+    }
+    .grade-big { font-family: var(--font-title); font-size: 74px; line-height: 1; margin-bottom: 6px; }
+    .grade-tag { font-size: 13px; color: var(--text-muted); }
+    .grade-A-card { border-color: var(--green); }
+    .grade-A-card .grade-big { color: var(--green); text-shadow: 0 0 24px var(--green); }
+    .grade-B-card { border-color: var(--blue); }
+    .grade-B-card .grade-big { color: var(--blue); text-shadow: 0 0 20px var(--blue); }
+    .grade-C-card { border-color: var(--gold); }
+    .grade-C-card .grade-big { color: var(--gold); text-shadow: 0 0 18px var(--gold); }
+    .grade-D-card { border-color: var(--gold-dark); }
+    .grade-D-card .grade-big { color: var(--gold-dark); }
+    .grade-X-card { border-color: rgba(255,255,255,0.2); }
+    .grade-X-card .grade-big { color: var(--text-muted); }
+    .grade-desc-card {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      min-width: 200px;
+    }
+    .grade-desc-title { font-family: var(--font-title); font-size: 21px; }
+    .grade-desc-body  { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+    .grade-desc-meta  { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 4px; }
+
+    /* ── Strengths / Challenges ── */
+    .sw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .sw-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .sw-panel.str { border-color: rgba(0,255,136,0.3); }
+    .sw-panel.chg { border-color: rgba(255,165,0,0.3); }
+    .sw-panel-title {
+      font-family: var(--font-title);
+      font-size: 16px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sw-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .sw-row:last-child { border-bottom: none; }
+    .sw-row-icon  { font-size: 20px; flex-shrink: 0; }
+    .sw-row-info  { flex: 1; min-width: 0; }
+    .sw-row-name  { font-weight: 700; font-size: 14px; }
+    .sw-row-sub   { font-size: 11px; color: var(--text-muted); }
+    .sw-row-pct   { font-weight: 800; font-size: 15px; flex-shrink: 0; }
+    .pct-good  { color: var(--green); }
+    .pct-warn  { color: var(--gold); }
+    .pct-poor  { color: #FF7070; }
+
+    /* ── Category skill rows ── */
+    .skill-section-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+    }
+    .cat-block {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .cat-block:last-child { border-bottom: none; }
+    .cat-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .cat-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .cat-meta   { flex: 1; min-width: 0; }
+    .cat-mname  { font-weight: 800; font-size: 15px; }
+    .cat-mstd   { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+    .cat-badge  {
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+    .s-mastered { background: rgba(0,255,136,0.15); color: var(--green); }
+    .s-progress { background: rgba(255,215,0,0.15); color: var(--gold); }
+    .s-needs    { background: rgba(255,120,0,0.15); color: #FFA060; }
+    .s-new      { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+    .cat-bar-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .cat-bar-bg {
+      flex: 1;
+      height: 13px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 7px;
+      overflow: hidden;
+    }
+    .cat-bar-fg {
+      height: 100%;
+      border-radius: 7px;
+      transition: width 1.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .cat-bar-num { font-size: 13px; font-weight: 800; min-width: 42px; text-align: right; }
+    .cat-counts  { display: flex; gap: 14px; font-size: 12px; color: var(--text-muted); flex-wrap: wrap; }
+    .cat-counts strong { color: white; }
+
+    /* ── Activity calendar ── */
+    .cal-grid { display: flex; flex-wrap: wrap; gap: 4px; }
+    .cal-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.05);
+      cursor: default;
+    }
+    .cal-dot.played { background: var(--pink); border-color: var(--pink); box-shadow: 0 0 4px rgba(255,0,128,0.4); }
+    .cal-dot.today  { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 5px rgba(255,215,0,0.5); }
+    .cal-legend { display: flex; gap: 16px; margin-top: 10px; font-size: 12px; color: var(--text-muted); flex-wrap: wrap; }
+    .leg-item { display: flex; align-items: center; gap: 6px; }
+    .leg-dot  { width: 10px; height: 10px; border-radius: 2px; }
+
+    /* ── Tips ── */
+    .tip-item {
+      background: linear-gradient(135deg, rgba(255,215,0,0.07), rgba(255,165,0,0.04));
+      border: 1px solid rgba(255,215,0,0.2);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .tip-ico  { font-size: 26px; flex-shrink: 0; padding-top: 2px; }
+    .tip-head { font-weight: 800; font-size: 14px; color: var(--gold); margin-bottom: 5px; }
+    .tip-body { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── Achievements ── */
+    .ach-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(255,215,0,0.12), rgba(255,165,0,0.07));
+      border: 1px solid rgba(255,215,0,0.28);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* ── Standards grid ── */
+    .std-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 10px;
+    }
+    .std-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .std-code { font-weight: 700; font-size: 12px; color: var(--purple); margin-bottom: 3px; }
+    .std-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 7px; }
+
+    /* ── No-data placeholder ── */
+    .no-data {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 32px;
+      text-align: center;
+    }
+    .no-data-ico   { font-size: 64px; margin-bottom: 16px; }
+    .no-data-title { font-family: var(--font-title); font-size: 26px; margin-bottom: 10px; }
+    .no-data-body  { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── Print ── */
+    @media print {
+      .stars-bg, #starsContainer { display: none !important; }
+      .print-btn, .back-btn { display: none !important; }
+      body { background: white !important; color: #111 !important; }
+      .report-header { background: white !important; border-bottom: 2px solid #ddd; }
+      .report-title { -webkit-text-fill-color: #9D00FF !important; color: #9D00FF !important; }
+      .report-container { padding: 14px !important; }
+      .ov-card, .grade-letter-card, .grade-desc-card, .sw-panel, .tip-item,
+      .skill-section-box, .std-card { background: #f8f8f8 !important; border-color: #ddd !important; }
+      .section-title { color: #333 !important; }
+      .ov-value, .cat-mname, .sw-row-name, .tip-head { color: #111 !important; }
+      a[href] { color: inherit; text-decoration: none; }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .report-header  { padding: 12px 14px; }
+      .report-title   { font-size: 18px; }
+      .report-container { padding: 14px 12px 60px; gap: 20px; }
+      .overview-grid  { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .ov-value       { font-size: 28px; }
+      .sw-grid        { grid-template-columns: 1fr; gap: 12px; }
+      .grade-wrap     { flex-direction: column; }
+      .grade-letter-card { flex-direction: row; gap: 16px; padding: 16px 20px; min-width: unset; }
+      .grade-big      { font-size: 52px; margin-bottom: 0; }
+      .std-grid       { grid-template-columns: 1fr; }
+      .cat-counts     { gap: 8px; }
+    }
+  </style>
+</head>
+<body class="dashboard-page">
+
+  <div class="stars-bg" id="starsContainer"></div>
+
+  <!-- ══ HEADER ══ -->
+  <header class="report-header">
+    <div class="report-header-left">
+      <a href="index.html" class="back-btn">← Game</a>
+      <div>
+        <div class="report-title">📋 Parent Progress Report</div>
+        <div class="report-subtitle">MiaMath · K-Pop Demon Hunter Academy · PA 3rd Grade Standards</div>
+      </div>
+    </div>
+    <button class="print-btn" onclick="window.print()">🖨️ Print Report</button>
+  </header>
+
+  <!-- ══ CONTENT ══ -->
+  <div class="report-container" id="reportContainer">
+    <div class="no-data">
+      <div class="no-data-ico">⏳</div>
+      <div class="no-data-title">Loading Report…</div>
+    </div>
+  </div>
+
+  <script src="js/progressSystem.js"></script>
+  <script>
+
+  /* ================================================================
+     PARENT REPORT GENERATOR
+     ================================================================ */
+
+  const CAT_INFO = {
+    multiplication: {
+      name: 'Multiplication', icon: '✖️',
+      color: '#9D00FF', bg: 'rgba(157,0,255,0.18)',
+      standard: 'PA CC.2.2.3.B.1',
+      stdDesc:  'Apply properties of multiplication and relationships between operations',
+      tip: 'Try multiplication flash cards and skip-counting (2s, 5s, 10s). Arrange objects into rows and columns: "3 rows of 4 apples = 12 total." Multiplication songs on YouTube make memorization stick!'
+    },
+    division: {
+      name: 'Division', icon: '➗',
+      color: '#00BFFF', bg: 'rgba(0,191,255,0.15)',
+      standard: 'PA CC.2.2.3.B.2',
+      stdDesc:  'Understand properties of division and the relationship to multiplication',
+      tip: 'Use real objects: "12 grapes shared equally among 3 people — how many each?" Connect division back to multiplication fact families (3×4=12, so 12÷3=4).'
+    },
+    fractions: {
+      name: 'Fractions', icon: '🍕',
+      color: '#FF69B4', bg: 'rgba(255,105,180,0.15)',
+      standard: 'PA CC.2.1.3.C.1',
+      stdDesc:  'Understand fractions as numbers on the number line',
+      tip: 'Use food to show equal parts — fold a piece of paper or cut a sandwich into halves, thirds, and fourths. Ask: "If you ate 2 of 4 pizza slices, what fraction did you eat?"'
+    },
+    placeValue: {
+      name: 'Place Value', icon: '🔢',
+      color: '#FFD700', bg: 'rgba(255,215,0,0.15)',
+      standard: 'PA CC.2.1.3.B.1',
+      stdDesc:  'Apply place value understanding to round, add, and subtract',
+      tip: 'Practice with coins (pennies=ones, dimes=tens, dollars=hundreds) or bundles of straws. Ask "What is the hundreds digit in 347?" or "Round 463 to the nearest hundred."'
+    },
+    addition: {
+      name: 'Addition', icon: '➕',
+      color: '#00FF88', bg: 'rgba(0,255,136,0.14)',
+      standard: 'PA CC.2.2.3.A.1',
+      stdDesc:  'Fluently add and subtract within 1,000 using strategies',
+      tip: 'Challenge her during car rides: "We drove 45 miles then 37 more — total?" Focus on 3-digit carrying (regrouping). Mental math games build speed and confidence.'
+    },
+    subtraction: {
+      name: 'Subtraction', icon: '➖',
+      color: '#FF7070', bg: 'rgba(255,112,112,0.14)',
+      standard: 'PA CC.2.2.3.A.1',
+      stdDesc:  'Fluently add and subtract within 1,000 using strategies',
+      tip: 'Practice regrouping (borrowing) with money: "You have $85 and spend $37 — how much is left?" Use a number line for visualizing differences between numbers.'
+    },
+    time: {
+      name: 'Time', icon: '🕐',
+      color: '#FFA500', bg: 'rgba(255,165,0,0.14)',
+      standard: 'PA CC.2.4.3.A.1',
+      stdDesc:  'Solve problems involving measurement and estimation of intervals of time',
+      tip: 'Read an analog clock together every day. Ask "How many minutes until dinner?" Set a kitchen timer and practice calculating elapsed time in 5-minute increments.'
+    },
+    geometry: {
+      name: 'Geometry', icon: '📐',
+      color: '#00BFFF', bg: 'rgba(0,191,255,0.12)',
+      standard: 'PA CC.2.3.3.A.1',
+      stdDesc:  'Identify, compare, and classify shapes; find area and perimeter',
+      tip: 'Walk through your home naming shapes: "How many sides does that window have?" Measure the perimeter of a table or rug with a tape measure and calculate area together.'
+    },
+    patterns: {
+      name: 'Patterns', icon: '🎨',
+      color: '#FF0080', bg: 'rgba(255,0,128,0.12)',
+      standard: 'PA CC.2.2.3.B.3',
+      stdDesc:  'Extend and create patterns and identify the rule',
+      tip: 'Play "What comes next?" with sequences: 2, 4, 6, __ or 5, 10, 15, __ Look for patterns on floor tiles, in music rhythms, or in the multiplication table together.'
+    }
+  };
+
+  const BADGE_META = {
+    first_battle:          { name: 'First Battle',          icon: '⚔️'  },
+    multiplication_novice: { name: 'Times Table Learner',   icon: '✖️'  },
+    multiplication_master: { name: 'Multiplication Master', icon: '🏆'  },
+    division_defender:     { name: 'Division Defender',     icon: '➗'  },
+    fraction_fighter:      { name: 'Fraction Fighter',      icon: '🍕'  },
+    geometry_guardian:     { name: 'Geometry Guardian',     icon: '📐'  },
+    streak_5:              { name: '5-Answer Streak',       icon: '🔥'  },
+    streak_10:             { name: '10-Answer Streak',      icon: '⚡'  },
+    perfect_daily:         { name: 'Perfect Daily Challenge', icon: '✨' },
+    boss_slayer:           { name: 'Boss Slayer',           icon: '👹'  },
+    level_5:               { name: 'Level 5 Reached',       icon: '⭐'  },
+    level_10:              { name: 'Level 10 Reached',      icon: '🌟'  },
+    time_master:           { name: 'Time Master',           icon: '🕐'  },
+    pattern_pro:           { name: 'Pattern Pro',           icon: '🎨'  },
+    place_value_pro:       { name: 'Place Value Pro',       icon: '🔢'  },
+    adventurer:            { name: 'First Adventure',       icon: '🗺️'  },
+    demon_hunter:          { name: 'Demon Hunter',          icon: '🎯'  },
+    accuracy_90:           { name: '90% Accuracy Award',   icon: '💎'  }
+  };
+
+  /* ── helpers ── */
+  function grade(acc, n) {
+    if (n < 10) return { letter: '—', css: 'grade-X-card', tag: 'Not enough data yet',
+      desc: `Mia needs to answer at least 10 questions before a rating appears. Encourage her to play a few rounds to get started!` };
+    if (acc >= 90) return { letter: 'A', css: 'grade-A-card', tag: 'Excellent!',
+      desc: `Mia is performing at an excellent level with ${acc}% accuracy across ${n} questions! She has a strong command of the 3rd grade math concepts. Keep encouraging daily play to maintain this momentum.` };
+    if (acc >= 80) return { letter: 'B', css: 'grade-B-card', tag: 'Great Work!',
+      desc: `Mia is doing great with ${acc}% accuracy! She understands most concepts well. A bit of extra practice in her weaker categories (see below) will push her to the top tier.` };
+    if (acc >= 70) return { letter: 'C', css: 'grade-C-card', tag: 'Good Progress',
+      desc: `Mia is making good progress at ${acc}% accuracy. She has the basics down and is building her skills. Focusing 10-15 minutes per day on the weaker categories listed below will make a big difference.` };
+    if (acc >= 60) return { letter: 'D', css: 'grade-D-card', tag: 'Needs Practice',
+      desc: `Mia is working hard but several concepts need reinforcement (${acc}% accuracy). The parent tips below offer fun, hands-on activities to help. Consistent daily sessions — even just 10 minutes — will produce noticeable improvement within a few weeks.` };
+    return { letter: 'F', css: 'grade-X-card', tag: 'Keep Trying!',
+      desc: `Everyone learns at their own pace! Mia is still building her foundation at ${acc}% accuracy. Try the activities in the tips section below to make practice fun at home. Daily play (even 5-10 minutes) will show significant improvement.` };
+  }
+
+  function statusBadge(acc, total) {
+    if (total < 5) return { label: 'Not Started', css: 's-new' };
+    if (acc >= 80)  return { label: '✓ Mastered',  css: 's-mastered' };
+    if (acc >= 60)  return { label: 'In Progress', css: 's-progress' };
+    return            { label: 'Needs Practice', css: 's-needs' };
+  }
+
+  function barColor(acc) {
+    if (acc >= 80) return 'linear-gradient(90deg,#00AA00,#00FF88)';
+    if (acc >= 60) return 'linear-gradient(90deg,#FFA500,#FFD700)';
+    return              'linear-gradient(90deg,#FF4444,#FF7070)';
+  }
+
+  function pctClass(acc) {
+    return acc >= 80 ? 'pct-good' : acc >= 60 ? 'pct-warn' : 'pct-poor';
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return 'Never';
+    return new Date(iso).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+  }
+
+  /* ── main render ── */
+  function buildReport() {
+    const ps = ProgressSystem.load();
+    const container = document.getElementById('reportContainer');
+
+    const totalAnswered = ps.totalAnswered || 0;
+    const totalCorrect  = ps.totalCorrect  || 0;
+    const acc = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+    const g   = grade(acc, totalAnswered);
+    const lvl = ps.level || 1;
+    const log = ps.activityLog || [];
+    const defeatedDemons = ps.adventureProgress?.defeatedDemons?.length || 0;
+
+    /* category rows sorted best → worst, untouched last */
+    const cats = Object.entries(ps.categoryStats || {}).map(([k, v]) => {
+      const info = CAT_INFO[k] || { name: k, icon: '📚', color: '#fff', bg: 'rgba(255,255,255,0.1)', standard:'', stdDesc:'', tip:'' };
+      const pct  = v.total > 0 ? Math.round((v.correct / v.total) * 100) : 0;
+      return { k, info, correct: v.correct, total: v.total, pct };
+    }).sort((a, b) => {
+      if (a.total === 0 && b.total > 0) return 1;
+      if (a.total > 0 && b.total === 0) return -1;
+      return b.pct - a.pct;
+    });
+
+    const withData   = cats.filter(c => c.total >= 5);
+    const strengths  = withData.slice(0, 3);
+    const challenges = [...withData].sort((a, b) => a.pct - b.pct).slice(0, 3);
+    const weakForTips = challenges.filter(c => c.pct < 80);
+
+    /* earned badges */
+    const earnedBadges = (ps.badges || []).map(id => BADGE_META[id]).filter(Boolean);
+
+    /* activity calendar — last 56 days (8 weeks) */
+    const today = new Date();
+    const todayStr = today.toDateString();
+    const calDays = Array.from({ length: 56 }, (_, i) => {
+      const d = new Date(today);
+      d.setDate(today.getDate() - (55 - i));
+      return d.toDateString();
+    });
+
+    /* ── assemble HTML ── */
+    container.innerHTML = `
+
+      <!-- Date banner -->
+      <div class="report-banner">
+        <div>
+          <div class="report-banner-name">📋 Mia's Math Progress Report</div>
+          <div class="report-banner-sub">
+            Generated ${new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}
+            &nbsp;·&nbsp; MiaMath K-Pop Demon Hunter Academy
+          </div>
+        </div>
+        <div class="report-banner-right">
+          <div>Playing since</div>
+          <strong>${fmtDate(ps.firstPlayDate)}</strong>
+        </div>
+      </div>
+
+      <!-- ══ Overview ══ -->
+      <section>
+        <h2 class="section-title">📊 Overview</h2>
+        <div class="overview-grid">
+          <div class="ov-card" style="border-color:rgba(157,0,255,0.35)">
+            <div class="ov-icon">⭐</div>
+            <div class="ov-value" style="color:var(--purple)">${lvl}</div>
+            <div class="ov-label">Game Level</div>
+          </div>
+          <div class="ov-card" style="border-color:rgba(0,255,136,0.35)">
+            <div class="ov-icon">🎯</div>
+            <div class="ov-value" style="color:${acc>=80?'var(--green)':acc>=60?'var(--gold)':'#FF7070'}">${totalAnswered>0?acc+'%':'—'}</div>
+            <div class="ov-label">Overall Accuracy</div>
+          </div>
+          <div class="ov-card" style="border-color:rgba(0,191,255,0.35)">
+            <div class="ov-icon">❓</div>
+            <div class="ov-value" style="color:var(--blue)">${totalAnswered.toLocaleString()}</div>
+            <div class="ov-label">Questions Answered</div>
+          </div>
+          <div class="ov-card" style="border-color:rgba(255,215,0,0.35)">
+            <div class="ov-icon">📅</div>
+            <div class="ov-value" style="color:var(--gold)">${log.length}</div>
+            <div class="ov-label">Days Active</div>
+          </div>
+          <div class="ov-card" style="border-color:rgba(255,0,128,0.35)">
+            <div class="ov-icon">👹</div>
+            <div class="ov-value" style="color:var(--pink)">${ps.demonsDefeated||0}</div>
+            <div class="ov-label">Demons Defeated</div>
+          </div>
+          <div class="ov-card" style="border-color:rgba(255,165,0,0.35)">
+            <div class="ov-icon">🔥</div>
+            <div class="ov-value" style="color:var(--gold-dark)">${ps.longestStreak||0}</div>
+            <div class="ov-label">Best Answer Streak</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Grade / Rating ══ -->
+      <section>
+        <h2 class="section-title">🏅 Performance Rating</h2>
+        <div class="grade-wrap">
+          <div class="grade-letter-card ${g.css}">
+            <div class="grade-big">${g.letter}</div>
+            <div class="grade-tag">${g.tag}</div>
+          </div>
+          <div class="grade-desc-card">
+            <div class="grade-desc-title">${g.tag}</div>
+            <div class="grade-desc-body">${g.desc}</div>
+            ${totalAnswered>0?`<div class="grade-desc-meta">${totalCorrect} correct out of ${totalAnswered} questions · Last played: ${fmtDate(ps.lastPlayDate)}</div>`:''}
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Strengths & Challenges ══ -->
+      ${withData.length > 0 ? `
+      <section>
+        <h2 class="section-title">💪 Strengths &amp; Challenges</h2>
+        <div class="sw-grid">
+          <div class="sw-panel str">
+            <div class="sw-panel-title" style="color:var(--green)">✅ Mia Excels At…</div>
+            ${strengths.length > 0
+              ? strengths.map(c => `
+                  <div class="sw-row">
+                    <span class="sw-row-icon">${c.info.icon}</span>
+                    <div class="sw-row-info">
+                      <div class="sw-row-name">${c.info.name}</div>
+                      <div class="sw-row-sub">${c.correct} correct / ${c.total} questions</div>
+                    </div>
+                    <div class="sw-row-pct pct-good">${c.pct}%</div>
+                  </div>`).join('')
+              : `<div style="font-size:13px;color:var(--text-muted)">Answer at least 5 questions per category to see strengths.</div>`
+            }
+          </div>
+          <div class="sw-panel chg">
+            <div class="sw-panel-title" style="color:var(--gold)">🎯 Needs More Practice…</div>
+            ${weakForTips.length > 0
+              ? weakForTips.map(c => `
+                  <div class="sw-row">
+                    <span class="sw-row-icon">${c.info.icon}</span>
+                    <div class="sw-row-info">
+                      <div class="sw-row-name">${c.info.name}</div>
+                      <div class="sw-row-sub">${c.correct} correct / ${c.total} questions</div>
+                    </div>
+                    <div class="sw-row-pct ${pctClass(c.pct)}">${c.pct}%</div>
+                  </div>`).join('')
+              : `<div style="font-size:13px;color:var(--green)">🎉 Mia is doing well in all practiced categories!</div>`
+            }
+          </div>
+        </div>
+      </section>
+      ` : ''}
+
+      <!-- ══ Skills Breakdown ══ -->
+      <section>
+        <h2 class="section-title">📚 Skills Breakdown by PA Standard</h2>
+        <div class="skill-section-box">
+          ${cats.map(c => {
+            const sb = statusBadge(c.pct, c.total);
+            return `
+            <div class="cat-block">
+              <div class="cat-top">
+                <div class="cat-circle" style="background:${c.info.bg}"><span>${c.info.icon}</span></div>
+                <div class="cat-meta">
+                  <div class="cat-mname">${c.info.name}</div>
+                  <div class="cat-mstd">${c.info.standard} · ${c.info.stdDesc}</div>
+                </div>
+                <span class="cat-badge ${sb.css}">${sb.label}</span>
+              </div>
+              <div class="cat-bar-wrap">
+                <div class="cat-bar-bg">
+                  <div class="cat-bar-fg" style="width:0%;background:${barColor(c.pct)}"
+                       data-w="${c.total>0?c.pct:0}"></div>
+                </div>
+                <div class="cat-bar-num" style="color:${c.total===0?'var(--text-muted)':c.pct>=80?'var(--green)':c.pct>=60?'var(--gold)':'#FF7070'}">
+                  ${c.total>0?c.pct+'%':'—'}
+                </div>
+              </div>
+              ${c.total>0
+                ? `<div class="cat-counts">
+                     <span>✅ <strong>${c.correct}</strong> correct</span>
+                     <span>❌ <strong>${c.total-c.correct}</strong> incorrect</span>
+                     <span>📊 <strong>${c.total}</strong> total</span>
+                   </div>`
+                : `<div style="font-size:12px;color:var(--text-muted)">Not yet practiced — try Adventure or Practice mode!</div>`
+              }
+            </div>`;
+          }).join('')}
+        </div>
+      </section>
+
+      <!-- ══ Activity Calendar ══ -->
+      <section>
+        <h2 class="section-title">📅 Activity — Last 8 Weeks</h2>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;">
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">
+            Mia has played on <strong style="color:white">${log.length} day${log.length!==1?'s':''}</strong> total.
+            ${log.length>0?`Last session: <strong style="color:white">${fmtDate(ps.lastPlayDate)}</strong>`:''}
+          </p>
+          <div class="cal-grid">
+            ${calDays.map(ds => {
+              const isToday = ds === todayStr;
+              const active  = log.includes(ds);
+              let cls = 'cal-dot' + (isToday ? ' today' : active ? ' played' : '');
+              let title = ds + (isToday ? ' (Today)' : active ? ' — Played ✓' : '');
+              return `<div class="${cls}" title="${title}"></div>`;
+            }).join('')}
+          </div>
+          <div class="cal-legend">
+            <div class="leg-item"><div class="leg-dot" style="background:var(--pink)"></div><span>Played</span></div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--gold)"></div><span>Today</span></div>
+            <div class="leg-item"><div class="leg-dot" style="background:rgba(255,255,255,0.08)"></div><span>No activity</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Achievements ══ -->
+      ${earnedBadges.length > 0 ? `
+      <section>
+        <h2 class="section-title">🏆 Achievements Unlocked — ${earnedBadges.length} / 18</h2>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;">
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">
+            Mia has earned <strong style="color:var(--gold)">${earnedBadges.length}</strong> of 18 possible achievements.
+            ${ps.bossDefeated ? ' 🎉 She defeated the final boss, Kali-Math-ulator!' : ''}
+            ${ps.dailyChallenge?.perfect ? ' ⭐ She earned a Perfect Score on a Daily Challenge!' : ''}
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            ${earnedBadges.map(b=>`<div class="ach-chip">${b.icon} ${b.name}</div>`).join('')}
+          </div>
+        </div>
+      </section>
+      ` : ''}
+
+      <!-- ══ Adventure Progress ══ -->
+      <section>
+        <h2 class="section-title">⚔️ Adventure Progress</h2>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;">
+          <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:12px;">
+            <div style="font-family:var(--font-title);font-size:42px;color:var(--pink)">${defeatedDemons}/8</div>
+            <div>
+              <div style="font-weight:800;font-size:15px;">Demon Levels Cleared</div>
+              <div style="font-size:13px;color:var(--text-muted);margin-top:4px;max-width:380px;">
+                ${defeatedDemons===0 ? "Mia hasn't started Adventure Mode yet — this is the story-based campaign with 8 unique demons!" :
+                  defeatedDemons<3   ? "Great start! Mia is working her way through the demon realm." :
+                  defeatedDemons<6   ? "Solid progress — Mia is more than halfway through the adventure!" :
+                  defeatedDemons<8   ? "Almost there! Just ${8-defeatedDemons} more demon${8-defeatedDemons!==1?'s':''} before the final boss." :
+                  "🎉 Mia has cleared all 8 demon levels! An incredible achievement."}
+              </div>
+            </div>
+          </div>
+          <div class="adventure-progress-bar">
+            <div class="adventure-progress-fill" style="width:${defeatedDemons/8*100}%"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Parent Tips ══ -->
+      <section>
+        <h2 class="section-title">💡 Tips for Parents</h2>
+        ${weakForTips.length > 0
+          ? `<p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">
+               Based on Mia's results, here are targeted activities you can do <strong style="color:white">at home</strong> to reinforce her weaker areas:
+             </p>
+             <div style="display:flex;flex-direction:column;gap:10px;">
+               ${weakForTips.slice(0,4).map(c=>`
+                 <div class="tip-item">
+                   <div class="tip-ico">${c.info.icon}</div>
+                   <div>
+                     <div class="tip-head">${c.info.name} — ${c.pct}% accuracy &nbsp;·&nbsp; <span style="font-weight:400;font-size:12px">${c.info.standard}</span></div>
+                     <div class="tip-body">${c.info.tip}</div>
+                   </div>
+                 </div>`).join('')}
+             </div>`
+          : `<div class="tip-item">
+               <div class="tip-ico">🌟</div>
+               <div>
+                 <div class="tip-head">Mia is performing well across all practiced categories!</div>
+                 <div class="tip-body">Encourage her to explore all game modes — Adventure Mode has 8 demon levels with a story, Daily Challenge builds a daily math habit, and Boss Battle is the ultimate test. Consistent 10-15 minute sessions lead to the best long-term results.</div>
+               </div>
+             </div>`
+        }
+        <div class="tip-item" style="margin-top:10px;">
+          <div class="tip-ico">📱</div>
+          <div>
+            <div class="tip-head">How to use MiaMath most effectively</div>
+            <div class="tip-body">Short daily sessions (10-15 min) beat long infrequent ones. The Daily Challenge mode is designed for exactly this — one focused session per day. Adventure Mode ties learning to a story so Mia is motivated to progress. You can view this report anytime by clicking "Parent Report" on the main screen.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ PA Standards Summary ══ -->
+      <section>
+        <h2 class="section-title">📜 PA 3rd Grade Standards Covered</h2>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">
+          MiaMath covers these Pennsylvania Common Core 3rd Grade Mathematics standards. Status reflects Mia's current performance:
+        </p>
+        <div class="std-grid">
+          ${Object.entries(CAT_INFO).map(([k, info]) => {
+            const cat  = ps.categoryStats?.[k];
+            const pct  = cat && cat.total >= 5 ? Math.round((cat.correct/cat.total)*100) : null;
+            const sb   = pct !== null ? statusBadge(pct, cat.total) : { label: 'Not started', css: 's-new' };
+            return `
+            <div class="std-card">
+              <div class="std-code">${info.standard} &nbsp;${info.icon}</div>
+              <div class="std-desc">${info.stdDesc}</div>
+              <span class="cat-badge ${sb.css}">${sb.label}${pct!==null?' · '+pct+'%':''}</span>
+            </div>`;
+          }).join('')}
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div style="text-align:center;font-size:12px;color:rgba(255,255,255,0.25);padding-top:8px;">
+        MiaMath · Progress is stored locally on this device — no accounts or uploads.
+        <br>
+        <a href="dashboard.html" style="color:rgba(255,255,255,0.35)">Student Dashboard</a>
+        &nbsp;·&nbsp;
+        <a href="index.html" style="color:rgba(255,255,255,0.35)">Back to Game</a>
+      </div>
+    `;
+
+    /* animate skill bars after DOM is ready */
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        document.querySelectorAll('.cat-bar-fg').forEach(el => {
+          el.style.width = el.getAttribute('data-w') + '%';
+        });
+      }, 120);
+    });
+  }
+
+  /* ── Spawn stars ── */
+  const sc = document.getElementById('starsContainer');
+  if (sc) {
+    for (let i = 0; i < 55; i++) {
+      const s = document.createElement('div');
+      s.className = 'star-dot';
+      const sz = Math.random() * 2.4 + 0.8;
+      s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*3}s;animation-delay:${Math.random()*3}s;opacity:${0.1+Math.random()*0.5}`;
+      sc.appendChild(s);
+    }
+  }
+
+  buildReport();
+
+  </script>
+</body>
+</html>

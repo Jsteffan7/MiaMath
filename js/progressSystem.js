@@ -47,7 +47,8 @@ const ProgressSystem = (() => {
       musicEnabled: false
     },
     firstPlayDate: null,
-    lastPlayDate: null
+    lastPlayDate: null,
+    activityLog: []    // array of date strings (e.g. "Mon Jan 01 2026") – one per active day
   };
 
   // Level thresholds (XP required for each level)
@@ -172,6 +173,18 @@ const ProgressSystem = (() => {
     return LEVEL_TITLES[idx];
   }
 
+  // ---- Activity log ----
+
+  function logActivity() {
+    const today = new Date().toDateString();
+    if (!state.activityLog) state.activityLog = [];
+    if (!state.activityLog.includes(today)) {
+      state.activityLog.unshift(today);
+      state.activityLog = state.activityLog.slice(0, 90); // keep ~3 months
+      save();
+    }
+  }
+
   // ---- Answer tracking ----
 
   function recordAnswer(category, correct, difficulty) {
@@ -205,6 +218,7 @@ const ProgressSystem = (() => {
       if (state.currentStreak === 10) xpGained += XP_REWARDS.streak_bonus_10;
     }
 
+    logActivity();
     save();
 
     const newBadges = checkBadges();
@@ -367,6 +381,7 @@ const ProgressSystem = (() => {
     getWeakestCategories,
     getRecommendedDifficulty,
     updateSettings,
+    logActivity,
     XP_REWARDS,
     LEVEL_TITLES
   };
